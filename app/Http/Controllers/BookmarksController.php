@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Bookmark;
+use App\Services\BookmarkCreator;
 use Illuminate\Http\Request;
 
 class BookmarksController extends Controller
 {
+    /**
+     * @var BookmarkCreator
+     */
+    protected $bookmarkCreator;
+
+    public function __construct(BookmarkCreator $bookmarkCreator)
+    {
+        $this->bookmarkCreator = $bookmarkCreator;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,8 +48,12 @@ class BookmarksController extends Controller
     {
         $input = $request->only(['url', 'title', 'description']);
         $categories = $request->input('category_ids');
-        
-        $bookmark = $this->bookmarkCreator->create($input, $categories);
+
+        try{
+            $bookmark = $this->bookmarkCreator->create($input, $categories);
+        } catch(\Exception $e) {
+            return $e->getMessage();
+        }
 
         return $bookmark;
     }

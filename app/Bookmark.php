@@ -8,17 +8,19 @@ class Bookmark extends Model
 {
     protected $guarded = [];
 
-    public static function fromForm($url, $title, $description, array $categories = [])
+    /**
+     * @param $url
+     * @param $title
+     * @param $description
+     * @return Bookmark
+     */
+    public static function fromForm($url, $title, $description)
     {
         $bookmark = self::create([
             'url' => $url,
             'title' => $title,
             'description' => $description,
         ]);
-
-        foreach($categories as $category) {
-            $bookmark->addCategory($category);
-        }
 
         return $bookmark;
     }
@@ -28,7 +30,7 @@ class Bookmark extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    private function addCategory(Category $category)
+    public function addCategory(Category $category)
     {
         $this->categories()->save($category);
     }

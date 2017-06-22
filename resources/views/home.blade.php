@@ -1,17 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
+    @foreach($bookmarks as $bookmark)
+        <div class="row">
+            <div class="medium-4 columns">
+                <div class="bookmark-listing">
+                    <h3><a href="">{{$bookmark->title}}</a></h3>
+                    <p>{{$bookmark->description}}</p>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    @endforeach
 @endsection

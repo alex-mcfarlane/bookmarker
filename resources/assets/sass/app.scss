@@ -11,6 +11,7 @@
 @import "variables";
 
 // Mixins
+$blue: #34495e;
 $midnight-blue: #2c3e50;
 $silver: #ecf0f1;
 $font-color: #333;
@@ -21,12 +22,27 @@ $sidebar-width: 50px;
 // Resets
 body {
   margin:0;
+  background:#f5f5f5;
   font-size:16px;
   font-family: Cabin;
 }
 
 .row{
   max-width:100%;
+}
+
+nav{
+  ul{
+    margin:0;
+    list-style: none;
+    li{
+      display: inline-block;
+      a{
+        color:$font-color;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 // Typography
@@ -50,7 +66,7 @@ a{
 
   #main-header{
     min-height:$navbar-height;
-    background: $midnight-blue;
+    background: #fff;
     padding-left:1em;
 
     nav{
@@ -74,14 +90,29 @@ a{
   left:0;
   width:$sidebar-width;
   min-height:100%;
-  background: $silver;
+  background:$blue;
+  z-index:2;
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+
+  &.open{
+    width:calc(#{$sidebar-width} + 200px);
+  }
+}
+
+#nav-icon-wrapper{
+  height:50px;
+  background:$midnight-blue;
 }
 
 #nav-icon {
-  width: calc(#{$sidebar-width} - 20px);
-  margin:calc((#{$navbar-height} - 35px)/2) auto 0;
+  width: calc(#{$sidebar-width} - 30px);
+  margin-top:calc((#{$navbar-height} - 25px)/2);
   height: 35px;
-  position: relative;
+  position: absolute;
+  right:calc((#{$sidebar-width} - (#{$sidebar-width} - 30px)) / 2);
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -90,13 +121,14 @@ a{
   -moz-transition: .5s ease-in-out;
   -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
+  cursor: pointer;
 
   span{
     display: block;
     position: absolute;
-    height: 5px;
+    height: 2.5px;
     width: 100%;
-    background: $midnight-blue;
+    background: $silver;
     border-radius: 9px;
     opacity: 1;
     left: 0;
@@ -110,11 +142,35 @@ a{
     transition: .25s ease-in-out;
 
     &:nth-child(2){
-      top:14px;
+      top:7px;
     }
 
     &:nth-child(3){
-      top:28px;
+      top:14px;
+    }
+  }
+
+  &.expand {
+    span {
+      &:nth-child(1) {
+        top: 14px;
+        -webkit-transform: rotate(135deg);
+        -moz-transform: rotate(135deg);
+        -o-transform: rotate(135deg);
+        transform: rotate(135deg);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+
+      &:nth-child(3) {
+        top: 14px;
+        -webkit-transform: rotate(-135deg);
+        -moz-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+      }
     }
   }
 }
@@ -124,20 +180,6 @@ a{
 }
 
 .bookmark-listing{
-  background:$silver;
+  background:#fff;
   padding:.667em 1em;
-}
-
-nav{
-  ul{
-    margin:0;
-    list-style: none;
-    li{
-      display: inline-block;
-      a{
-        color:#fff;
-        text-decoration: none;
-      }
-    }
-  }
 }

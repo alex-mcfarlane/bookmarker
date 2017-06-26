@@ -16,13 +16,16 @@
 </head>
 
 <aside id="main-sidebar">
-    <a href="#">
+    <div id="nav-icon-wrapper">
         <div id="nav-icon">
-            <span></span>
-            <span></span>
-            <span></span>
+            <a href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
         </div>
-    </a>
+    </div>
+
 </aside>
 
 <section id="main-content">
@@ -43,6 +46,6 @@
 </section>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

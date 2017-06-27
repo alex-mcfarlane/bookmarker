@@ -26,17 +26,28 @@
         </div>
     </div>
 
+    <nav>
+        <ul class="sidebar-navigation">
+            <li><a href=""><span class="menu-text">Bookmarks</span></a>
+                <ul>
+                    <li><a href="">New</a></li>
+                    <li><a href="">All</a></li>
+                    <li><a href="">Unread</a></li>
+                    <li><a href="">Archived</a></li>
+                </ul>
+            </li>
+            <li><a href=""><span class="menu-text">Categories</span></a></li>
+            <li><a href=""><span class="menu-text">Account</span></a></li>
+            <li><a href=""><span class="menu-text">Discover</span></a></li>
+        </ul>
+    </nav>
+
 </aside>
 
 <section id="main-content">
     <header id="main-header">
-        <nav class="column">
-            <ul class="navigation">
-                <li><a href="/">Home</a></li>
-                <li><a href="/">Bookmarks</a></li>
-                <li><a href="/">Categories</a></li>
-                <li><a href="/">Discover</a></li>
-            </ul>
+        <nav class="search-bar medium-6">
+            <input type="text" name="search" placeholder="Search..."/>
         </nav>
     </header>
 

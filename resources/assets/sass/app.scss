@@ -96,8 +96,8 @@ a{
     width:calc(#{$sidebar-width} + 200px);
 
     ul.sidebar-navigation{
-      span.menu-text{
-        display: inline;
+      li.menu-text{
+        display: block;
         -webkit-transition: .5s ease-in-out;
         -moz-transition: .5s ease-in-out;
         -o-transition: .5s ease-in-out;
@@ -108,14 +108,25 @@ a{
 
   ul.sidebar-navigation{
     padding:1.5rem 1rem;
+
     li{
       margin-bottom:1rem;
-      span.menu-text{
+      &.menu-text{
         display:none;
       }
       
-      ul{
+      ul.sub-menu{
         display: none;
+        margin-top:.667rem;
+        margin-bottom:1rem;
+
+        &.open {
+          display: block;
+        }
+
+        li{
+          margin-bottom: .444rem;
+        }
       }
       
       a{

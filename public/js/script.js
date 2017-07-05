@@ -11,3 +11,20 @@ toggle.addEventListener('click', function(){
         sidebar.classList.add('open');
     }
 });
+
+var sidebarLinks = document.getElementsByClassName('expandable');
+
+for(var i = 0; i < sidebarLinks.length; i++) {
+    var expandLink = sidebarLinks[i];
+
+    expandLink.addEventListener('click', function() {
+        for(var nodeIndex = 0; nodeIndex < this.childNodes.length; nodeIndex++) {
+            var node = this.childNodes[nodeIndex];
+
+            if(node.classList && node.classList.contains('sub-menu')) {
+                node.classList.add('open');
+                break;
+            }
+        }
+    });
+}

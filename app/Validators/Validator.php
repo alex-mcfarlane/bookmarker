@@ -6,7 +6,7 @@ use Validator as V;
 
 abstract class Validator
 {
-    protected $errors;
+    protected $errors = [];
 
     /**
      * @return array
@@ -18,7 +18,9 @@ abstract class Validator
         $validator = V::make($attrs, $this->getRules());
 
         if($validator->fails()) {
-            $this->errors = $validator->messages();
+            $messageBag = $validator->messages();
+
+            $this->errors = $messageBag->getMessages();
 
             return false;
         }

@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Bookmark;
 use App\Category;
+use App\Exceptions\BaseException;
 use App\Validators\BookmarkValidator;
 
 class BookmarkCreator
@@ -20,7 +21,7 @@ class BookmarkCreator
     public function create($attrs, array $category_ids)
     {
         if(!$this->validator->validate($attrs)) {
-            throw new \Exception($this->validator->getErrors());
+            throw new BaseException("Bookmark exception", $this->validator->getErrors(), 412);
         }
 
         $bookmark = Bookmark::fromForm($attrs['url'], $attrs['title'], $attrs['description']);

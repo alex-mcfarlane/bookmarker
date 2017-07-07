@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bookmark;
+use App\Exceptions\BaseException;
 use App\Services\BookmarkCreator;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class BookmarksController extends Controller
      */
     public function create()
     {
-        //
+        return view('bookmarks.create');
     }
 
     /**
@@ -47,12 +48,12 @@ class BookmarksController extends Controller
     public function store(Request $request)
     {
         $input = $request->only(['url', 'title', 'description']);
-        $categories = $request->input('category_ids');
+        $categories = $request->input('category_ids', []);
 
         try{
             $bookmark = $this->bookmarkCreator->create($input, $categories);
-        } catch(\Exception $e) {
-            return $e->getMessage();
+        } catch(BaseException $e) {
+            return back()->withErrors($e->getErrors());
         }
 
         return $bookmark;

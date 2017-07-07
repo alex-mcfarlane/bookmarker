@@ -31,7 +31,7 @@
         <ul class="sidebar-navigation">
             <li class="expandable menu-text"><a href="#">Bookmarks</a>
                 <ul class="sub-menu">
-                    <li><a href="">New</a></li>
+                    <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>
                     <li><a href="">Unread</a></li>
                     <li><a href="">Archived</a></li>

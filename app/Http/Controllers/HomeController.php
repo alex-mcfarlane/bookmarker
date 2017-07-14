@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bookmark;
+use App\Queries\BookmarkQuery;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,9 +23,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bookmarks = Bookmark::all();
+        $query = new BookmarkQuery($request->all());
+        $builder = $query->applyFilters(Bookmark::query());
+
+        $bookmarks = $builder->get();
 
         return view('home', ['bookmarks'=>$bookmarks]);
     }

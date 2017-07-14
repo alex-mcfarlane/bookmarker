@@ -48,7 +48,9 @@
 <section id="main-content">
     <header id="main-header">
         <nav class="search-bar medium-6">
-            <input type="text" name="search" placeholder="Search..."/>
+            <form method="POST" action="{{url('search')}}">
+                <input type="text" name="search" placeholder="Search..."/>
+            </form>
         </nav>
     </header>
 

@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <section class="filter">
+        <ul>
+            <li></li>
+        </ul>
+    </section>
+
     <div class="row">
     @foreach($bookmarks as $key => $bookmark)
         @if($key % 3 == 0)

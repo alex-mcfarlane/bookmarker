@@ -96,8 +96,9 @@ a{
     width:calc(#{$sidebar-width} + 200px);
 
     ul.sidebar-navigation{
-      li.menu-text{
-        display: block;
+      .menu-text{
+        display: inline-block;
+        text-indent:inherit;
         -webkit-transition: .5s ease-in-out;
         -moz-transition: .5s ease-in-out;
         -o-transition: .5s ease-in-out;
@@ -111,8 +112,10 @@ a{
 
     li{
       margin-bottom:1rem;
-      &.menu-text{
-        display:none;
+      overflow-x:hidden;
+      .menu-text{
+        display: inline-block;
+        text-indent:-999px;
       }
       
       ul.sub-menu{

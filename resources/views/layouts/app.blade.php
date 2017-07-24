@@ -29,7 +29,7 @@
 
     <nav>
         <ul class="sidebar-navigation">
-            <li class="expandable menu-text"><a href="#">Bookmarks</a>
+            <li class="expandable"><a href="#"><i class="fa fa-bookmark"></i><span class="menu-text">Bookmarks</span></a>
                 <ul class="sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>
@@ -37,9 +37,9 @@
                     <li><a href="">Archived</a></li>
                 </ul>
             </li>
-            <li class="menu-text"><a href="#">Categories</a></li>
-            <li class="menu-text"><a href="#">Account</a></li>
-            <li class="menu-text"><a href="#">Discover</a></li>
+            <li><a href="#"><span class="menu-text">Categories</span></a></li>
+            <li><a href="#"><span class="menu-text">Account</span></a></li>
+            <li><a href="#"><span class="menu-text">Discover</span></a></li>
         </ul>
     </nav>
 

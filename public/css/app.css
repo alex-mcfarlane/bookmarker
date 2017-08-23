@@ -29,6 +29,9 @@ p, a {
 a {
   color: #333; }
 
+/**
+ Main Header
+ */
 #main-content {
   margin-left: 50px; }
   #main-content #main-header {
@@ -42,6 +45,9 @@ a {
         border: none;
         box-shadow: none; }
 
+/**
+ Main Navigation Sidebar
+ */
 #main-sidebar {
   position: absolute;
   top: 0;
@@ -138,8 +144,18 @@ a {
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg); }
 
+/**
+ Main Content
+*/
 .content {
   padding: 1em; }
+
+.search-filter .columns:last-child {
+  float: left; }
+.search-filter input.button[type="submit"] {
+  height: 2.3125rem;
+  padding-top: 0;
+  padding-bottom: 0; }
 
 .bookmark-listing {
   background: #fff;

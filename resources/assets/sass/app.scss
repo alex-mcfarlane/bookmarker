@@ -60,6 +60,9 @@ a{
   color: $font-color;
 }
 
+/**
+ Main Header
+ */
 #main-content{
   margin-left:50px;
 
@@ -79,6 +82,9 @@ a{
   }
 }
 
+/**
+ Main Navigation Sidebar
+ */
 #main-sidebar{
   position: absolute;
   top:0;
@@ -212,8 +218,23 @@ a{
   }
 }
 
+/**
+ Main Content
+*/
 .content{
   padding:1em;
+}
+
+.search-filter {
+  .columns:last-child {
+    float: left;
+  }
+
+  input.button[type="submit"] {
+    height:2.3125rem;
+    padding-top: 0;
+    padding-bottom:0;
+  }
 }
 
 .bookmark-listing{

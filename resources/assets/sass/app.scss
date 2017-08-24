@@ -92,7 +92,7 @@ a{
   width:$sidebar-width;
   min-height:100%;
   background:$blue;
-  z-index:2;
+  z-index:3;
   -webkit-transition: .5s ease-in-out;
   -moz-transition: .5s ease-in-out;
   -o-transition: .5s ease-in-out;
@@ -102,6 +102,10 @@ a{
     width:calc(#{$sidebar-width} + 200px);
 
     ul.sidebar-navigation{
+      i{
+        width:20px;
+        margin-right: 5px;
+      }
       .menu-text{
         display: inline-block;
         text-indent:inherit;
@@ -114,7 +118,7 @@ a{
   }
 
   ul.sidebar-navigation{
-    padding:1.5rem 1rem;
+    padding:1rem;
 
     li{
       margin-bottom:1rem;

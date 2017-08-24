@@ -37,9 +37,34 @@
                     <li><a href="">Archived</a></li>
                 </ul>
             </li>
-            <li><a href="#"><span class="menu-text">Categories</span></a></li>
-            <li><a href="#"><span class="menu-text">Account</span></a></li>
-            <li><a href="#"><span class="menu-text">Discover</span></a></li>
+            <li class="expandable">
+                <a href="#"><i class="fa fa-tags"></i><span class="menu-text">Categories</span></a>
+                <ul class="sub-menu">
+                    <li><a href="/bookmarks/create">New</a></li>
+                    <li><a href="">All</a></li>
+                    <li><a href="">Unread</a></li>
+                    <li><a href="">Archived</a></li>
+                </ul>
+            </li>
+            <li class="expandable">
+                <a href="#"><i class="fa fa-binoculars"></i><span class="menu-text">Discover</span></a>
+                <ul class="sub-menu">
+                    <li><a href="/bookmarks/create">New</a></li>
+                    <li><a href="">All</a></li>
+                    <li><a href="">Unread</a></li>
+                    <li><a href="">Archived</a></li>
+                </ul>
+            </li>
+            <li class="expandable">
+                <a href="#"><i class="fa fa-address-card-o"></i><span class="menu-text">Account</span></a>
+                <ul class="sub-menu">
+                    <li><a href="/bookmarks/create">New</a></li>
+                    <li><a href="">All</a></li>
+                    <li><a href="">Unread</a></li>
+                    <li><a href="">Archived</a></li>
+                </ul>
+            </li>
+
         </ul>
     </nav>
 

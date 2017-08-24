@@ -55,13 +55,16 @@ a {
   width: 50px;
   min-height: 100%;
   background: #34495e;
-  z-index: 2;
+  z-index: 3;
   -webkit-transition: .5s ease-in-out;
   -moz-transition: .5s ease-in-out;
   -o-transition: .5s ease-in-out;
   transition: .5s ease-in-out; }
   #main-sidebar.open {
     width: calc(50px + 200px); }
+    #main-sidebar.open ul.sidebar-navigation i {
+      width: 20px;
+      margin-right: 5px; }
     #main-sidebar.open ul.sidebar-navigation .menu-text {
       display: inline-block;
       text-indent: inherit;
@@ -70,7 +73,7 @@ a {
       -o-transition: .5s ease-in-out;
       transition: .5s ease-in-out; }
   #main-sidebar ul.sidebar-navigation {
-    padding: 1.5rem 1rem; }
+    padding: 1rem; }
     #main-sidebar ul.sidebar-navigation li {
       margin-bottom: 1rem;
       overflow-x: hidden; }

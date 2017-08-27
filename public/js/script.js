@@ -5,6 +5,7 @@ toggle.addEventListener('click', function(){
     if(this.classList.contains('expand')) {
         this.classList.remove('expand');
         sidebar.classList.remove('open');
+        closeOpenMenus();
     }
     else {
         this.classList.add('expand');
@@ -21,10 +22,28 @@ for(var i = 0; i < sidebarLinks.length; i++) {
         for(var nodeIndex = 0; nodeIndex < this.childNodes.length; nodeIndex++) {
             var node = this.childNodes[nodeIndex];
 
+            // DOM manipulation on the ul sub-menu
             if(node.classList && node.classList.contains('sub-menu')) {
+                // close open sub menu's
+                closeOpenMenus();
+
                 node.classList.add('open');
+
                 break;
             }
         }
     });
+}
+
+function closeOpenMenus()
+{
+    var openMenus = document.getElementsByClassName('open');
+
+    for(var menuIndex = 0; menuIndex < openMenus.length; menuIndex++) {
+        var sibling = openMenus[menuIndex];
+
+        if(sibling.classList.contains('sub-menu')) {
+            sibling.classList.remove('open');
+        }
+    }
 }

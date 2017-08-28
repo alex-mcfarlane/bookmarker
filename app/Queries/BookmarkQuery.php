@@ -46,6 +46,16 @@ class BookmarkQuery
         return $this->builder->where('created_at', '>', $date);
     }
 
+    private function ended($date)
+    {
+        // validate date
+        if(!$this->validateDate($date)) {
+            throw new \Exception('Invalid date');
+        }
+
+        return $this->builder->where('created_at', '<', $date);
+    }
+
     private function validateDate($date)
     {
         $splitDate = explode('-', $date);
@@ -53,5 +63,7 @@ class BookmarkQuery
         if(count($splitDate) != 3) {
             return false;
         }
+
+        return true;
     }
 }

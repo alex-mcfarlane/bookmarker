@@ -29,7 +29,14 @@
 
     <nav>
         <ul class="sidebar-navigation">
-            <li class="expandable"><a href="#"><i class="fa fa-bookmark"></i><span class="menu-text">Bookmarks</span></a>
+            <li class="expandable">
+                <a href="#">
+                    <div class="icon-container">
+                        <i class="fa fa-bookmark"></i>
+                    </div>
+                    <span class="menu-text">Bookmarks</span>
+                </a>
+
                 <ul class="sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>
@@ -38,7 +45,13 @@
                 </ul>
             </li>
             <li class="expandable">
-                <a href="#"><i class="fa fa-tags"></i><span class="menu-text">Categories</span></a>
+                <a href="#">
+                    <div class="icon-container">
+                        <i class="fa fa-tags"></i>
+                    </div>
+
+                    <span class="menu-text">Categories</span>
+                </a>
                 <ul class="sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>
@@ -47,7 +60,14 @@
                 </ul>
             </li>
             <li class="expandable">
-                <a href="#"><i class="fa fa-binoculars"></i><span class="menu-text">Discover</span></a>
+                <a href="#">
+                    <div class="icon-container">
+                        <i class="fa fa-binoculars"></i>
+                    </div>
+
+                    <span class="menu-text">Discover</span>
+                </a>
+
                 <ul class="sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>

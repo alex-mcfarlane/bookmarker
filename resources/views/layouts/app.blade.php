@@ -76,7 +76,14 @@
                 </ul>
             </li>
             <li class="expandable">
-                <a href="#"><i class="fa fa-address-card-o"></i><span class="menu-text">Account</span></a>
+                <a href="#">
+                    <div class="icon-container">
+                        <i class="fa fa-address-card-o"></i>
+                    </div>
+
+                    <span class="menu-text">Account</span>
+                </a>
+
                 <ul class="sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>

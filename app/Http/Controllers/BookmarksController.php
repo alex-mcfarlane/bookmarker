@@ -56,7 +56,7 @@ class BookmarksController extends Controller
             return back()->withErrors($e->getErrors());
         }
 
-        return $bookmark;
+        return redirect()->route('bookmarks.show', ['id' => $bookmark->id]);
     }
 
     /**
@@ -67,7 +67,9 @@ class BookmarksController extends Controller
      */
     public function show($id)
     {
-        //
+        $bookmark = Bookmark::find($id);
+
+        return view('bookmarks.view', ['bookmark' => $bookmark]);
     }
 
     /**

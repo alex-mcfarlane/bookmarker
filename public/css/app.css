@@ -64,15 +64,14 @@ a {
     width: calc(50px + 200px); }
     #main-sidebar.open ul.sidebar-navigation .menu-text {
       display: inline-block;
-      /*-webkit-transition: .5s ease-in-out;
+      -webkit-transition: .5s ease-in-out;
       -moz-transition: .5s ease-in-out;
       -o-transition: .5s ease-in-out;
-      transition: .5s ease-in-out;*/ }
+      transition: .5s ease-in-out; }
   #main-sidebar ul.sidebar-navigation {
     padding: 1rem; }
     #main-sidebar ul.sidebar-navigation li {
-      margin-bottom: 1rem;
-      overflow-x: hidden; }
+      margin-bottom: 1rem; }
       #main-sidebar ul.sidebar-navigation li .menu-text {
         display: none; }
       #main-sidebar ul.sidebar-navigation li .icon-container {

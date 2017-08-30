@@ -52,8 +52,9 @@
 
                     <span class="menu-text">Categories</span>
                 </a>
+
                 <ul class="sub-menu">
-                    <li><a href="/bookmarks/create">New</a></li>
+                    <li><a href="/categories/create">New</a></li>
                     <li><a href="">All</a></li>
                     <li><a href="">Unread</a></li>
                     <li><a href="">Archived</a></li>

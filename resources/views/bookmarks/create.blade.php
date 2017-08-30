@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="column small-12 medium-8 large-6">
-            <form method="POST" action="/bookmarks">
+            <form method="POST" action="/bookmarks" class="inline-form">
 
                 <input type="hidden" value="{{csrf_token()}}"/>
 
@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="column small-9">
-                        <input type="text" name="url" placeholder="Enter the URL for the web page"/>
+                        <input type="text" name="url" id="url" placeholder="Enter the URL for the web page"/>
                     </div>
                 </div>
 
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="column small-9">
-                        <input type="text" name="title" placeholder="Enter a title"/>
+                        <input type="text" name="title" id="title" placeholder="Enter a title"/>
                     </div>
                 </div>
 
@@ -33,13 +33,13 @@
                     </div>
 
                     <div class="column small-9">
-                        <input type="text" name="description" placeholder="Describe the page you are bookmarking"/>
+                        <input type="text" name="description" id="description" placeholder="Describe the page you are bookmarking"/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="column small-12">
-                        <input type="submit" class="right" value="Save Bookmark"/>
+                        <input type="submit" class="button tiny right" value="Save Bookmark"/>
                     </div>
                 </div>
 

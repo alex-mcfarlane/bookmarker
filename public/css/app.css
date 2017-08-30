@@ -164,4 +164,7 @@ a {
   margin-bottom: 1.5rem;
   padding: .667em 1em; }
 
+.inline-form label {
+  font-size: 1rem; }
+
 /*# sourceMappingURL=app.css.map */

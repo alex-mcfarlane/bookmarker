@@ -38,6 +38,21 @@
                 </div>
 
                 <div class="row">
+                    <div class="column small-3">
+                        <label for="categories" class="right inline">Categories:</label>
+                    </div>
+
+                    <div class="column small-9">
+                        <select name="categories[]" id="categories" multiple>
+                            <option value="" disabled selected>Select a category:</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="column small-12">
                         <input type="submit" class="button tiny right" value="Save Bookmark"/>
                     </div>

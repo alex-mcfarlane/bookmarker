@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Bookmark extends Model
 {
@@ -16,11 +17,13 @@ class Bookmark extends Model
      */
     public static function fromForm($url, $title, $description)
     {
-        $bookmark = self::create([
-            'url' => $url,
+        $bookmark = self::make([
             'title' => $title,
             'description' => $description,
         ]);
+
+        $bookmark->setUrl($url);
+        $bookmark->save();
 
         return $bookmark;
     }
@@ -33,5 +36,20 @@ class Bookmark extends Model
     public function addCategory(Category $category)
     {
         $this->categories()->save($category);
+    }
+
+    protected function setUrl($url)
+    {
+        $value = $url;
+
+        if(substr($value, 0, 4) == 'www.') {
+            $value = substr($value, 4);
+        }
+
+        if(substr($value, 0, 4) != 'http') {
+            $value = "http://" . $value;
+        }
+
+        $this->url = $value;
     }
 }

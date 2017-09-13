@@ -27,10 +27,10 @@ class BookmarkTest extends TestCase
     {
         $category = Category::create(['title' => 'Basics']);
 
-        $bookmark = Bookmark::fromForm("www.google.com", 'Google', 'Search Engine');
+        $bookmark = Bookmark::fromForm("http://google.com", 'Google', 'Search Engine');
         $bookmark->addCategory($category);
 
-        $this->assertEquals($bookmark->url, "www.google.com");
+        $this->assertEquals($bookmark->url, "http://google.com");
         $this->assertEquals($bookmark->title, "Google");
         $this->assertEquals($bookmark->description, "Search Engine");
         $this->assertTrue($bookmark->categories->contains($category));
@@ -57,5 +57,16 @@ class BookmarkTest extends TestCase
 
         $this->assertTrue($collection->contains($bookmark1));
         $this->assertTrue($collection->contains($bookmark3));
+    }
+
+    /**
+     * @test
+     */
+
+    public function can_format_invalid_href()
+    {
+        $bookmark = Bookmark::fromForm('www.google.com', 'Google', 'Search Engine');
+
+        $this->assertEquals('http://google.com', $bookmark->url);
     }
 }

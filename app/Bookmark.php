@@ -38,18 +38,29 @@ class Bookmark extends Model
         $this->categories()->save($category);
     }
 
+    /**
+     * @param $url
+     *
+     * Two uses cases for invalid URL's that need formatting:
+     * URL starts with only www AND/OR URL does not start with http (this can be http, https, etc...)
+     */
     protected function setUrl($url)
     {
         $value = $url;
 
-        if(substr($value, 0, 4) == 'www.') {
+        if($this->urlHeadHasString('www.', $value)) {
             $value = substr($value, 4);
         }
 
-        if(substr($value, 0, 4) != 'http') {
+        if(!$this->urlHeadHasString('http', $value)) {
             $value = "http://" . $value;
         }
 
         $this->url = $value;
+    }
+
+    private function urlHeadHasString($needle, $haystack)
+    {
+        return substr($haystack, 0, strlen($needle)) == $needle;
     }
 }

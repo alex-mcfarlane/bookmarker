@@ -253,6 +253,21 @@ a{
 .bookmark-container {
   background: #fff;
   padding:1rem;
+
+  .tagline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .flex {
+      flex: 1;
+    }
+  }
+
+  .actions-container {
+    float:right;
+    height:16px;
+  }
 }
 
 // Forms

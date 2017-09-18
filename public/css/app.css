@@ -167,6 +167,15 @@ a {
 .bookmark-container {
   background: #fff;
   padding: 1rem; }
+  .bookmark-container .tagline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; }
+    .bookmark-container .tagline .flex {
+      flex: 1; }
+  .bookmark-container .actions-container {
+    float: right;
+    height: 16px; }
 
 .inline-form label {
   font-size: 1rem; }

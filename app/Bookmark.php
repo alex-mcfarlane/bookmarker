@@ -28,14 +28,21 @@ class Bookmark extends Model
         return $bookmark;
     }
 
+    public function edit($url, $title, $description, $categoryIds)
+    {
+        $this->title = $title;
+        $this->description = $description;
+
+        $this->setUrl($url);
+
+        $this->setCategories($categoryIds);
+
+        return $this->save();
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class);
-    }
-
-    public function addCategory(Category $category)
-    {
-        $this->categories()->save($category);
     }
 
     /**
@@ -57,6 +64,38 @@ class Bookmark extends Model
         }
 
         $this->url = $value;
+    }
+
+    public function setCategories(array $categoryIds)
+    {
+        $existingCategoryIds = $this->categories->map(function($item, $key) {
+            return $item['id'];
+        });
+
+        $categoriesToAdd = array_diff($categoryIds, $existingCategoryIds->toArray());
+        $categoriesToRemove = array_diff($existingCategoryIds->toArray(), $categoryIds);
+
+        foreach($categoriesToAdd as $categoryId) {
+            if($category = Category::find($categoryId)) {
+                $this->addCategory($category);
+            }
+        }
+
+        foreach($categoriesToRemove as $categoryId) {
+            if($category = Category::find($categoryId)) {
+                $this->removeCategory($category);
+            }
+        }
+    }
+
+    protected function addCategory(Category $category)
+    {
+        $this->categories()->save($category);
+    }
+
+    protected function removeCategory(Category $category)
+    {
+        $this->categories()->detach($category->id);
     }
 
     private function urlHeadHasString($needle, $haystack)

@@ -12,9 +12,11 @@
                 </div>
             @endif
 
-            <form method="POST" action="/bookmarks" class="inline-form">
+            <form method="POST" action="{{  url('bookmarks/'.$bookmark->id) }}" class="inline-form">
 
-                <input type="hidden" value="{{csrf_token()}}"/>
+                {{ csrf_field() }}
+
+                {{ method_field('PUT') }}
 
                 <div class="row">
                     <div class="column small-3">
@@ -22,7 +24,7 @@
                     </div>
 
                     <div class="column small-9">
-                        <input type="text" name="url" id="url" placeholder="Enter the URL for the web page"/>
+                        <input type="text" name="url" id="url" value="{{ old('url') ? old('url') : $bookmark->url}}"/>
                     </div>
                 </div>
 
@@ -32,7 +34,7 @@
                     </div>
 
                     <div class="column small-9">
-                        <input type="text" name="title" id="title" placeholder="Enter a title"/>
+                        <input type="text" name="title" id="title" value="{{ old('title') ? old('title') : $bookmark->title}}">
                     </div>
                 </div>
 
@@ -42,7 +44,7 @@
                     </div>
 
                     <div class="column small-9">
-                        <input type="text" name="description" id="description" placeholder="Describe the page you are bookmarking"/>
+                        <input type="text" name="description" id="description" value="{{ old('description') ? old('description') : $bookmark->description}}"/>
                     </div>
                 </div>
 
@@ -53,9 +55,10 @@
 
                     <div class="column small-9">
                         <select name="categories[]" id="categories" multiple>
-                            <option value="" disabled selected>Select a category:</option>
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                <option value="{{$category->id}}" {{$bookmark->categories->contains($category) ? 'selected' : ''}}>
+                                    {{$category->title}}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -63,7 +66,7 @@
 
                 <div class="row">
                     <div class="column small-12">
-                        <input type="submit" class="button tiny right" value="Save Bookmark"/>
+                        <input type="submit" class="button tiny right" value="Update Bookmark"/>
                     </div>
                 </div>
 

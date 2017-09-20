@@ -79,6 +79,18 @@ a{
         box-shadow: none;
       }
     }
+
+    nav.main-nav {
+      ul {
+        li {
+          display: inline-block;
+          margin:12.5px 2.25em 12.5px 0;
+          a{
+            font-weight: bold;
+          }
+        }
+      }
+    }
   }
 }
 

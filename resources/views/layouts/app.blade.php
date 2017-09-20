@@ -100,11 +100,23 @@
 
 <section id="main-content">
     <header id="main-header">
-        <nav class="search-bar medium-6">
-            <form method="POST" action="{{url('search')}}">
-                <input type="text" name="search" placeholder="Search..."/>
-            </form>
-        </nav>
+        <div class="row">
+
+            <nav class="main-nav medium-6 column">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/home">Discover</a></li>
+                </ul>
+            </nav>
+
+            <nav class="search-bar medium-6 column">
+                <form method="POST" action="{{url('search')}}">
+                    <input type="text" name="search" placeholder="Search..."/>
+                </form>
+            </nav>
+
+        </div>
+
     </header>
 
     <div class="content">

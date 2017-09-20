@@ -14,9 +14,23 @@
                 <p>{{$bookmark->description}}</p>
 
                 <div class="actions-container">
-                    <a href="{{url('bookmarks/'.$bookmark->id.'/edit')}}">
-                        <i class="fa fa-pencil-square-o"></i>
-                    </a>
+                    <ul class="menu">
+                        <li>
+                            <a href="{{url('bookmarks/'.$bookmark->id.'/edit')}}">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <form method="POST" action="{{url('bookmarks/'.$bookmark->id.'/archive')}}">
+                                {{csrf_field()}}
+                                {{ method_field('PUT') }}
+                                <button type="submit">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            </form>
+
+                        </li>
+                    </ul>
                 </div>
                 <div class="clearfix">
 

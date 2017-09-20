@@ -88,6 +88,13 @@ class Bookmark extends Model
         }
     }
 
+    public function archive()
+    {
+        $this->read = true;
+
+        return $this->save();
+    }
+
     protected function addCategory(Category $category)
     {
         $this->categories()->save($category);

@@ -31,14 +31,12 @@ body {
   max-width:100%;
 }
 
-nav{
-  ul{
-    margin:0;
-    list-style: none;
-    li{
-      a{
-        text-decoration: none;
-      }
+ul.menu{
+  margin:0;
+  list-style: none;
+  li{
+    a{
+      text-decoration: none;
     }
   }
 }
@@ -279,6 +277,20 @@ a{
   .actions-container {
     float:right;
     height:16px;
+    li {
+      display: inline-block;
+      margin-right: .667em;
+
+      &:last-child {
+        margin-right:0;
+      }
+
+      button {
+        padding:0;
+        background-color: transparent;
+        color: #333;
+      }
+    }
   }
 }
 

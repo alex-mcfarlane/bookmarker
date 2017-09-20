@@ -11,10 +11,10 @@ body {
 .row {
   max-width: 100%; }
 
-nav ul {
+ul.menu {
   margin: 0;
   list-style: none; }
-  nav ul li a {
+  ul.menu li a {
     text-decoration: none; }
 
 h2 {
@@ -181,6 +181,15 @@ a {
   .bookmark-container .actions-container {
     float: right;
     height: 16px; }
+    .bookmark-container .actions-container li {
+      display: inline-block;
+      margin-right: .667em; }
+      .bookmark-container .actions-container li:last-child {
+        margin-right: 0; }
+      .bookmark-container .actions-container li button {
+        padding: 0;
+        background-color: transparent;
+        color: #333; }
 
 .inline-form label {
   font-size: 1rem; }

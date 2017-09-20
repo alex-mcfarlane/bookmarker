@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('bookmarks', 'BookmarksController');
 
 Route::resource('categories', 'CategoriesController');
+
+Route::put('bookmarks/{id}/archive', 'ArchivedBookmarksController@store');

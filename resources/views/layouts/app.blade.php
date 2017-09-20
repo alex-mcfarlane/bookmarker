@@ -28,7 +28,7 @@
     </div>
 
     <nav>
-        <ul class="sidebar-navigation">
+        <ul class="menu sidebar-navigation">
             <li class="expandable">
                 <a href="#">
                     <div class="icon-container">
@@ -37,7 +37,7 @@
                     <span class="menu-text">Bookmarks</span>
                 </a>
 
-                <ul class="sub-menu">
+                <ul class="menu sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>
                     <li><a href="">Unread</a></li>
@@ -53,7 +53,7 @@
                     <span class="menu-text">Categories</span>
                 </a>
 
-                <ul class="sub-menu">
+                <ul class="menu sub-menu">
                     <li><a href="/categories/create">New</a></li>
                     <li><a href="">All</a></li>
                     <li><a href="">Unread</a></li>
@@ -69,7 +69,7 @@
                     <span class="menu-text">Discover</span>
                 </a>
 
-                <ul class="sub-menu">
+                <ul class="menu sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>
                     <li><a href="">Unread</a></li>
@@ -85,7 +85,7 @@
                     <span class="menu-text">Account</span>
                 </a>
 
-                <ul class="sub-menu">
+                <ul class="menu sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
                     <li><a href="">All</a></li>
                     <li><a href="">Unread</a></li>
@@ -103,7 +103,7 @@
         <div class="row">
 
             <nav class="main-nav medium-6 column">
-                <ul>
+                <ul class="menu">
                     <li><a href="/home">Home</a></li>
                     <li><a href="/home">Discover</a></li>
                 </ul>

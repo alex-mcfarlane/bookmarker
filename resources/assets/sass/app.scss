@@ -31,14 +31,12 @@ body {
   max-width:100%;
 }
 
-nav{
-  ul{
-    margin:0;
-    list-style: none;
-    li{
-      a{
-        text-decoration: none;
-      }
+ul.menu{
+  margin:0;
+  list-style: none;
+  li{
+    a{
+      text-decoration: none;
     }
   }
 }
@@ -79,6 +77,18 @@ a{
         box-shadow: none;
       }
     }
+
+    nav.main-nav {
+      ul {
+        li {
+          display: inline-block;
+          margin:12.5px 2.25em 12.5px 0;
+          a{
+            font-weight: bold;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -92,7 +102,7 @@ a{
   width:$sidebar-width;
   min-height:100%;
   background:$blue;
-  z-index:2;
+  z-index:3;
   -webkit-transition: .5s ease-in-out;
   -moz-transition: .5s ease-in-out;
   -o-transition: .5s ease-in-out;
@@ -102,9 +112,11 @@ a{
     width:calc(#{$sidebar-width} + 200px);
 
     ul.sidebar-navigation{
+      i{
+
+      }
       .menu-text{
         display: inline-block;
-        text-indent:inherit;
         -webkit-transition: .5s ease-in-out;
         -moz-transition: .5s ease-in-out;
         -o-transition: .5s ease-in-out;
@@ -114,14 +126,19 @@ a{
   }
 
   ul.sidebar-navigation{
-    padding:1.5rem 1rem;
+    padding:1rem;
 
     li{
       margin-bottom:1rem;
-      overflow-x:hidden;
       .menu-text{
+        display: none;
+      }
+
+      .icon-container {
         display: inline-block;
-        text-indent:-999px;
+        margin-right: 5px;
+        width: 20px;
+        text-align: center;
       }
       
       ul.sub-menu{
@@ -241,4 +258,45 @@ a{
   background:#fff;
   margin-bottom: 1.5rem;
   padding:.667em 1em;
+}
+
+.bookmark-container {
+  background: #fff;
+  padding:1rem;
+
+  .tagline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .flex {
+      flex: 1;
+    }
+  }
+
+  .actions-container {
+    float:right;
+    height:16px;
+    li {
+      display: inline-block;
+      margin-right: .667em;
+
+      &:last-child {
+        margin-right:0;
+      }
+
+      button {
+        padding:0;
+        background-color: transparent;
+        color: #333;
+      }
+    }
+  }
+}
+
+// Forms
+.inline-form{
+  label{
+    font-size:1rem;
+  }
 }

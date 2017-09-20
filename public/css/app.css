@@ -11,10 +11,10 @@ body {
 .row {
   max-width: 100%; }
 
-nav ul {
+ul.menu {
   margin: 0;
   list-style: none; }
-  nav ul li a {
+  ul.menu li a {
     text-decoration: none; }
 
 h2 {
@@ -44,6 +44,11 @@ a {
         margin-bottom: 0;
         border: none;
         box-shadow: none; }
+    #main-content #main-header nav.main-nav ul li {
+      display: inline-block;
+      margin: 12.5px 2.25em 12.5px 0; }
+      #main-content #main-header nav.main-nav ul li a {
+        font-weight: bold; }
 
 /**
  Main Navigation Sidebar
@@ -55,7 +60,7 @@ a {
   width: 50px;
   min-height: 100%;
   background: #34495e;
-  z-index: 2;
+  z-index: 3;
   -webkit-transition: .5s ease-in-out;
   -moz-transition: .5s ease-in-out;
   -o-transition: .5s ease-in-out;
@@ -64,19 +69,21 @@ a {
     width: calc(50px + 200px); }
     #main-sidebar.open ul.sidebar-navigation .menu-text {
       display: inline-block;
-      text-indent: inherit;
       -webkit-transition: .5s ease-in-out;
       -moz-transition: .5s ease-in-out;
       -o-transition: .5s ease-in-out;
       transition: .5s ease-in-out; }
   #main-sidebar ul.sidebar-navigation {
-    padding: 1.5rem 1rem; }
+    padding: 1rem; }
     #main-sidebar ul.sidebar-navigation li {
-      margin-bottom: 1rem;
-      overflow-x: hidden; }
+      margin-bottom: 1rem; }
       #main-sidebar ul.sidebar-navigation li .menu-text {
+        display: none; }
+      #main-sidebar ul.sidebar-navigation li .icon-container {
         display: inline-block;
-        text-indent: -999px; }
+        margin-right: 5px;
+        width: 20px;
+        text-align: center; }
       #main-sidebar ul.sidebar-navigation li ul.sub-menu {
         display: none;
         margin-top: .667rem;
@@ -161,5 +168,30 @@ a {
   background: #fff;
   margin-bottom: 1.5rem;
   padding: .667em 1em; }
+
+.bookmark-container {
+  background: #fff;
+  padding: 1rem; }
+  .bookmark-container .tagline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; }
+    .bookmark-container .tagline .flex {
+      flex: 1; }
+  .bookmark-container .actions-container {
+    float: right;
+    height: 16px; }
+    .bookmark-container .actions-container li {
+      display: inline-block;
+      margin-right: .667em; }
+      .bookmark-container .actions-container li:last-child {
+        margin-right: 0; }
+      .bookmark-container .actions-container li button {
+        padding: 0;
+        background-color: transparent;
+        color: #333; }
+
+.inline-form label {
+  font-size: 1rem; }
 
 /*# sourceMappingURL=app.css.map */

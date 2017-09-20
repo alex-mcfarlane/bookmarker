@@ -26,11 +26,7 @@ class BookmarkCreator
 
         $bookmark = Bookmark::fromForm($attrs['url'], $attrs['title'], $attrs['description']);
 
-        foreach($category_ids as $category_id) {
-            if($category = Category::find($category_id)) {
-                $bookmark->addCategory($category);
-            }
-        }
+        $bookmark->setCategories($category_ids);
 
         return $bookmark;
     }

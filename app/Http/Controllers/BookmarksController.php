@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Bookmark;
+use App\Category;
 use App\Exceptions\BaseException;
 use App\Services\BookmarkCreator;
+use App\Services\BookmarkUpdater;
 use Illuminate\Http\Request;
 
 class BookmarksController extends Controller
@@ -14,9 +16,10 @@ class BookmarksController extends Controller
      */
     protected $bookmarkCreator;
 
-    public function __construct(BookmarkCreator $bookmarkCreator)
+    public function __construct(BookmarkCreator $bookmarkCreator, BookmarkUpdater $bookmarkUpdater)
     {
         $this->bookmarkCreator = $bookmarkCreator;
+        $this->bookmarkUpdater = $bookmarkUpdater;
     }
 
     /**
@@ -36,7 +39,9 @@ class BookmarksController extends Controller
      */
     public function create()
     {
-        return view('bookmarks.create');
+        $categories = Category::all();
+
+        return view('bookmarks.create', compact('categories'));
     }
 
     /**
@@ -48,7 +53,7 @@ class BookmarksController extends Controller
     public function store(Request $request)
     {
         $input = $request->only(['url', 'title', 'description']);
-        $categories = $request->input('category_ids', []);
+        $categories = $request->input('categories', []);
 
         try{
             $bookmark = $this->bookmarkCreator->create($input, $categories);
@@ -56,7 +61,7 @@ class BookmarksController extends Controller
             return back()->withErrors($e->getErrors());
         }
 
-        return $bookmark;
+        return redirect()->route('bookmarks.show', ['id' => $bookmark->id]);
     }
 
     /**
@@ -67,7 +72,9 @@ class BookmarksController extends Controller
      */
     public function show($id)
     {
-        //
+        $bookmark = Bookmark::find($id);
+
+        return view('bookmarks.view', ['bookmark' => $bookmark]);
     }
 
     /**
@@ -78,7 +85,10 @@ class BookmarksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bookmark = Bookmark::find($id);
+        $categories = Category::all();
+
+        return view('bookmarks.edit', ['bookmark' => $bookmark, 'categories' => $categories]);
     }
 
     /**
@@ -90,8 +100,20 @@ class BookmarksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bookmark = Bookmark::find($id);
+
+        $input = $request->only(['url', 'title', 'description']);
+        $categories = $request->input('categories', []);
+
+        try {
+            $updatedBookmark = $this->bookmarkUpdater->update($bookmark, $input, $categories);
+
+            return redirect()->route('bookmarks.show', ['id' => $updatedBookmark->id]);
+        } catch(BaseException $e) {
+            return back()->withInput($request->input())->withErrors($e->getErrors());
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

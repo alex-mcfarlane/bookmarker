@@ -10,10 +10,7 @@
             @endif
 
             <div class="medium-4 columns">
-                <div class="bookmark-listing">
-                    <h3><a href="{{url('bookmarks/'.$bookmark->id)}}">{{$bookmark->title}}</a></h3>
-                    <p>{{$bookmark->description}}</p>
-                </div>
+                @include('bookmarks.listing', ['bookmark' => $bookmark])
             </div>
         @endforeach
     </div>

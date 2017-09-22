@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="small-6 small-centered columns">
-            <div class="bookmark bookmark-container">
+            <div class="bookmark bookmark-container detailed">
                 <h2><a href="{{$bookmark->url}}" target="_blank">{{$bookmark->title}}</a></h2>
 
                 <div class="tagline">

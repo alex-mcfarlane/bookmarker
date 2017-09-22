@@ -54,6 +54,10 @@ p, a{
   font-size: 1em;
 }
 
+p {
+  margin-bottom: 1em;
+}
+
 a{
   color: $font-color;
 }
@@ -256,13 +260,19 @@ a{
 
 .bookmark-listing{
   background:#fff;
-  margin-bottom: 1.5rem;
-  padding:.667em 1em;
+
 }
 
 .bookmark-container {
   background: #fff;
-  padding:1rem;
+
+  &.listing{
+    margin-bottom: 1.5rem;
+    padding:.667em 1em;
+  }
+  &.detailed {
+    padding:1rem;
+  }
 
   .tagline {
     display: flex;
@@ -271,6 +281,17 @@ a{
 
     .flex {
       flex: 1;
+    }
+  }
+
+  .bookmark-meta-info {
+    img, p{
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    p {
+      margin-bottom: 0;
     }
   }
 

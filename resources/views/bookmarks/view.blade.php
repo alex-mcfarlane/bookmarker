@@ -21,13 +21,29 @@
                             </a>
                         </li>
                         <li>
-                            <form method="POST" action="{{url('bookmarks/'.$bookmark->id.'/archive')}}">
-                                {{csrf_field()}}
-                                {{ method_field('PUT') }}
-                                <button type="submit">
-                                    <i class="fa fa-check"></i>
-                                </button>
-                            </form>
+                            @if($bookmark->read)
+                                <form method="POST" action="{{url('bookmarks/'.$bookmark->id)}}">
+                                    {{csrf_field()}}
+                                    {{ method_field('PATCH') }}
+
+                                    <input type="hidden" name="read" value="0"/>
+
+                                    <button type="submit" title="Mark as Open">
+                                        <i class="fa fa-envelope"></i>
+                                    </button>
+                                </form>
+                            @else
+                                <form method="POST" action="{{url('bookmarks/'.$bookmark->id)}}">
+                                    {{csrf_field()}}
+                                    {{ method_field('Patch') }}
+
+                                    <input type="hidden" name="read" value="1"/>
+
+                                    <button type="submit" title="Archive">
+                                        <i class="fa fa-envelope-open"></i>
+                                    </button>
+                                </form>
+                            @endif
 
                         </li>
                     </ul>

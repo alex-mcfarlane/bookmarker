@@ -19,8 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::patch('bookmarks/{id}', 'BookmarksController@partialUpdate');
 Route::resource('bookmarks', 'BookmarksController');
 
 Route::resource('categories', 'CategoriesController');
-
-Route::put('bookmarks/{id}/archive', 'ArchivedBookmarksController@store');

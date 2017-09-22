@@ -114,6 +114,24 @@ class BookmarksController extends Controller
         }
     }
 
+    public function partialUpdate(Request $request, $id)
+    {
+        $bookmark = Bookmark::find($id);
+
+        if($request->has('read')) {
+            $isRead = $request->input('read');
+
+            if($isRead) {
+                $bookmark->archive();
+            }
+            else {
+                $bookmark->open();
+            }
+        }
+
+        return back();
+    }
+
 
     /**
      * Remove the specified resource from storage.

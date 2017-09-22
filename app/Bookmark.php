@@ -95,6 +95,13 @@ class Bookmark extends Model
         return $this->save();
     }
 
+    public function open()
+    {
+        $this->read = false;
+
+        return $this->save();
+    }
+
     protected function addCategory(Category $category)
     {
         $this->categories()->save($category);

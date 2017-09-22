@@ -20,6 +20,7 @@ class Bookmark extends Model
         $bookmark = self::make([
             'title' => $title,
             'description' => $description,
+            'read' => 0
         ]);
 
         $bookmark->setUrl($url);

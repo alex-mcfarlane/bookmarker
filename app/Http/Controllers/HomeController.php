@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $query = new BookmarkQuery($request->all());
+        $filters = $request->all()+['read' => 0];
+        $query = new BookmarkQuery($filters);
         $builder = $query->applyFilters(Bookmark::query());
 
         $bookmarks = $builder->get();

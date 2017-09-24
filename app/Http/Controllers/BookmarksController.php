@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Bookmark;
-use App\Category;
 use App\Exceptions\BaseException;
 use App\Services\BookmarkCreator;
 use App\Services\BookmarkUpdater;
 use Illuminate\Http\Request;
+use App\Bookmark;
+use App\Category;
+use App\Queries\BookmarkQuery;
 
 class BookmarksController extends Controller
 {
@@ -27,9 +28,15 @@ class BookmarksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filters = $request->all();
+        $query = new BookmarkQuery($filters);
+        $builder = $query->applyFilters(Bookmark::query());
+
+        $bookmarks = $builder->get();
+
+        return view('bookmarks.index', ['bookmarks'=>$bookmarks]);
     }
 
     /**

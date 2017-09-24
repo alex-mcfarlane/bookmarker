@@ -41,6 +41,11 @@ ul.menu{
   }
 }
 
+.column + .column:last-child, .columns + .column:last-child, .column +
+.columns:last-child, .columns +
+.columns:last-child {
+  float:left;
+}
 // Typography
 h2{
   font-size:2.25em;

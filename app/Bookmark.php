@@ -103,6 +103,13 @@ class Bookmark extends Model
         return $this->save();
     }
 
+    public function getHostName()
+    {
+        $parsedUrl = parse_url($this->url);
+
+        return $parsedUrl['host'];
+    }
+
     protected function addCategory(Category $category)
     {
         $this->categories()->save($category);

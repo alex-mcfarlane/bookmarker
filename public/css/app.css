@@ -190,9 +190,12 @@ a {
       flex: 1; }
   .bookmark-container .bookmark-meta-info img, .bookmark-container .bookmark-meta-info p {
     display: inline-block;
-    vertical-align: middle; }
+    vertical-align: middle;
+    margin-right: .667rem; }
   .bookmark-container .bookmark-meta-info p {
-    margin-bottom: 0; }
+    max-width: 80%;
+    margin-bottom: 0;
+    line-height: 1.2; }
   .bookmark-container .actions-container {
     float: right;
     height: 16px; }

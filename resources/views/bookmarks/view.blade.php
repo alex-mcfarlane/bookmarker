@@ -7,7 +7,7 @@
                 <h2><a href="{{$bookmark->url}}" target="_blank">{{$bookmark->title}}</a></h2>
 
                 <div class="tagline">
-                    <p class="flex">Bookmarked from <a href="{{$bookmark->url}}" target="_blank">{{$bookmark->url}}</a></p>
+                    <p class="flex">Bookmarked from <a href="{{$bookmark->url}}" target="_blank">{{$bookmark->getHostName()}}</a></p>
                     <a href="{{$bookmark->url}}" class="button tiny" target="_blank">Read More!</a>
                 </div>
 

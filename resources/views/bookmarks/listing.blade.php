@@ -5,6 +5,6 @@
     <div class="bookmark-meta-info">
         <img src="{{'https://www.google.com/s2/favicons?domain='.$bookmark->url}}" />
 
-        <p >Bookmarked from <a href="{{$bookmark->url}}" target="_blank">{{$bookmark->getHostName()}}</a></p>
+        <p >Bookmarked from <a href="{{$bookmark->url}}" class="link" target="_blank">{{$bookmark->getHostName()}}</a></p>
     </div>
 </div>

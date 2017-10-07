@@ -13,6 +13,7 @@
 // Mixins
 $blue: #34495e;
 $midnight-blue: #2c3e50;
+$light-blue: #008CBA;
 $silver: #ecf0f1;
 $font-color: #333;
 
@@ -48,11 +49,11 @@ ul.menu{
 }
 // Typography
 h2{
-  font-size:2.25em;
+  font-size:3.375em;
 }
 
 h3{
-  font-size: 1.5em;
+  font-size: 2.25em;
 }
 
 p, a{
@@ -65,6 +66,10 @@ p {
 
 a{
   color: $font-color;
+}
+
+a.link {
+  color: $light-blue;
 }
 
 /**
@@ -277,6 +282,19 @@ a{
   }
   &.detailed {
     padding:1rem;
+  }
+
+  .title{
+    h2, span{
+      margin-right:1rem;
+      display:inline;
+      vertical-align: middle;
+    }
+
+    span {
+      padding: .296rem;
+      font-size: .667rem;
+    }
   }
 
   .tagline {

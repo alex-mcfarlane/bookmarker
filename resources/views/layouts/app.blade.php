@@ -39,9 +39,9 @@
 
                 <ul class="menu sub-menu">
                     <li><a href="/bookmarks/create">New</a></li>
-                    <li><a href="">All</a></li>
-                    <li><a href="">Unread</a></li>
-                    <li><a href="">Archived</a></li>
+                    <li><a href="/bookmarks?read=0">Unread</a></li>
+                    <li><a href="/bookmarks?read=1">Archived</a></li>
+                    <li><a href="/bookmarks">All</a></li>
                 </ul>
             </li>
             <li class="expandable">

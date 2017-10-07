@@ -4,6 +4,8 @@ namespace App\Queries;
 
 class BookmarkQuery extends Query
 {
+    protected $validFields = ['read'];
+
     protected function started($date)
     {
         // validate date

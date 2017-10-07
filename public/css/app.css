@@ -17,17 +17,28 @@ ul.menu {
   ul.menu li a {
     text-decoration: none; }
 
+.column + .column:last-child, .columns + .column:last-child, .column +
+.columns:last-child, .columns +
+.columns:last-child {
+  float: left; }
+
 h2 {
-  font-size: 2.25em; }
+  font-size: 3.375em; }
 
 h3 {
-  font-size: 1.5em; }
+  font-size: 2.25em; }
 
 p, a {
   font-size: 1em; }
 
+p {
+  margin-bottom: 1em; }
+
 a {
   color: #333; }
+
+a.link {
+  color: #008CBA; }
 
 /**
  Main Header
@@ -165,19 +176,36 @@ a {
   padding-bottom: 0; }
 
 .bookmark-listing {
-  background: #fff;
-  margin-bottom: 1.5rem;
-  padding: .667em 1em; }
+  background: #fff; }
 
 .bookmark-container {
-  background: #fff;
-  padding: 1rem; }
+  background: #fff; }
+  .bookmark-container.listing {
+    margin-bottom: 1.5rem;
+    padding: .667em 1em; }
+  .bookmark-container.detailed {
+    padding: 1rem; }
+  .bookmark-container .title h2, .bookmark-container .title span {
+    margin-right: 1rem;
+    display: inline;
+    vertical-align: middle; }
+  .bookmark-container .title span {
+    padding: .296rem;
+    font-size: .667rem; }
   .bookmark-container .tagline {
     display: flex;
     align-items: center;
     justify-content: flex-end; }
     .bookmark-container .tagline .flex {
       flex: 1; }
+  .bookmark-container .bookmark-meta-info img, .bookmark-container .bookmark-meta-info p {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: .667rem; }
+  .bookmark-container .bookmark-meta-info p {
+    max-width: 80%;
+    margin-bottom: 0;
+    line-height: 1.2; }
   .bookmark-container .actions-container {
     float: right;
     height: 16px; }

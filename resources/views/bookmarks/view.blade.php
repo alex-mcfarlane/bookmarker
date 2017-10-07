@@ -3,11 +3,19 @@
 @section('content')
     <div class="row">
         <div class="small-6 small-centered columns">
-            <div class="bookmark bookmark-container">
-                <h2><a href="{{$bookmark->url}}" target="_blank">{{$bookmark->title}}</a></h2>
+            <div class="bookmark bookmark-container detailed">
+
+                <div class="title">
+                    <h2><a href="{{$bookmark->url}}" target="_blank">{{$bookmark->title}}</a></h2>
+                    @if($bookmark->read)
+                        <span class="alert-box alert">Archived!</span>
+                    @endif
+                </div>
+
+                </span>
 
                 <div class="tagline">
-                    <p class="flex">Bookmarked from <a href="{{$bookmark->url}}" target="_blank">{{$bookmark->url}}</a></p>
+                    <p class="flex">Bookmarked from <a href="{{$bookmark->url}}" class="link" target="_blank">{{$bookmark->getHostName()}}</a></p>
                     <a href="{{$bookmark->url}}" class="button tiny" target="_blank">Read More!</a>
                 </div>
 

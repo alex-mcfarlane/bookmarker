@@ -20,6 +20,7 @@ class Bookmark extends Model
         $bookmark = self::make([
             'title' => $title,
             'description' => $description,
+            'read' => 0
         ]);
 
         $bookmark->setUrl($url);
@@ -100,6 +101,13 @@ class Bookmark extends Model
         $this->read = false;
 
         return $this->save();
+    }
+
+    public function getHostName()
+    {
+        $parsedUrl = parse_url($this->url);
+
+        return $parsedUrl['host'];
     }
 
     protected function addCategory(Category $category)

@@ -13,6 +13,7 @@
 // Mixins
 $blue: #34495e;
 $midnight-blue: #2c3e50;
+$light-blue: #008CBA;
 $silver: #ecf0f1;
 $font-color: #333;
 
@@ -41,21 +42,34 @@ ul.menu{
   }
 }
 
+.column + .column:last-child, .columns + .column:last-child, .column +
+.columns:last-child, .columns +
+.columns:last-child {
+  float:left;
+}
 // Typography
 h2{
-  font-size:2.25em;
+  font-size:3.375em;
 }
 
 h3{
-  font-size: 1.5em;
+  font-size: 2.25em;
 }
 
 p, a{
   font-size: 1em;
 }
 
+p {
+  margin-bottom: 1em;
+}
+
 a{
   color: $font-color;
+}
+
+a.link {
+  color: $light-blue;
 }
 
 /**
@@ -256,13 +270,32 @@ a{
 
 .bookmark-listing{
   background:#fff;
-  margin-bottom: 1.5rem;
-  padding:.667em 1em;
+
 }
 
 .bookmark-container {
   background: #fff;
-  padding:1rem;
+
+  &.listing{
+    margin-bottom: 1.5rem;
+    padding:.667em 1em;
+  }
+  &.detailed {
+    padding:1rem;
+  }
+
+  .title{
+    h2, span{
+      margin-right:1rem;
+      display:inline;
+      vertical-align: middle;
+    }
+
+    span {
+      padding: .296rem;
+      font-size: .667rem;
+    }
+  }
 
   .tagline {
     display: flex;
@@ -271,6 +304,20 @@ a{
 
     .flex {
       flex: 1;
+    }
+  }
+
+  .bookmark-meta-info {
+    img, p{
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: .667rem;
+    }
+
+    p {
+      max-width: 80%;
+      margin-bottom: 0;
+      line-height: 1.2;
     }
   }
 

@@ -40,14 +40,14 @@
     </section>
 
     <div class="row">
-    @foreach($bookmarks as $key => $bookmark)
-        @if($key % 3 == 0)
+        @foreach($bookmarks as $key => $bookmark)
+            @if($key % 3 == 0)
                 <div class="clearfix"></div>
-        @endif
+            @endif
 
-        <div class="medium-4 columns">
-            @include('bookmarks.listing', ['bookmark' => $bookmark])
-        </div>
-    @endforeach
+            <div class="medium-4 columns">
+                @include('bookmarks.listing', ['bookmark' => $bookmark])
+            </div>
+        @endforeach
     </div>
 @endsection

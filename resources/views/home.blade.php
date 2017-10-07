@@ -12,7 +12,7 @@
                             <span class="prefix">Start</span>
                         </div>
                         <div class="small-9 columns">
-                            <input type="date" name="started">
+                            <input type="date" name="started" value="{{ app('request')->input('started') }}">
                         </div>
                     </div>
 
@@ -25,7 +25,7 @@
                             <span class="prefix">End</span>
                         </div>
                         <div class="small-9 columns">
-                            <input type="date" name="ended">
+                            <input type="date" name="ended" value="{{ app('request')->input('ended') }}">
                         </div>
                     </div>
 

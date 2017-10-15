@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bookmark;
+use App\Category;
 use App\Queries\BookmarkQuery;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class HomeController extends Controller
         $builder = $query->applyFilters(Bookmark::query());
 
         $bookmarks = $builder->get();
+        $categories = Category::popular()->get();
 
-        return view('home', ['bookmarks'=>$bookmarks]);
+        return view('home', ['bookmarks'=>$bookmarks, 'categories' => $categories]);
     }
 }

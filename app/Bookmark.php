@@ -110,7 +110,7 @@ class Bookmark extends Model
         return $parsedUrl['host'];
     }
 
-    protected function addCategory(Category $category)
+    public function addCategory(Category $category)
     {
         $this->categories()->save($category);
     }

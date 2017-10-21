@@ -14,6 +14,11 @@ class Category extends Model
         return $this->belongsToMany(Bookmark::class);
     }
 
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
+
     public function scopePopular($query)
     {
         return $query->select('categories.*', DB::raw('count(bookmarks.id) as bookmarks_count'))
@@ -23,5 +28,10 @@ class Category extends Model
             ->groupBy('categories.id')
             ->orderBy('bookmarks_count', 'desc')
             ->limit(3);
+    }
+
+    public function addImage(Image $image)
+    {
+        $this->image()->save($image);
     }
 }

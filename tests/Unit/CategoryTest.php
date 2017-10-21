@@ -10,7 +10,9 @@ namespace Tests\Unit;
 
 use App\Bookmark;
 use App\Category;
+use App\Image;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
@@ -32,5 +34,17 @@ class CategoryTest extends TestCase
         $popularCategories = Category::popular()->get();
 
         $this->assertEquals(true, $popularCategories->contains($category));
+    }
+
+    /**
+     * @test
+     */
+    public function can_add_an_image()
+    {
+        $category = Category::create(['title' => 'Test']);
+        $image = Image::fromRequest(UploadedFile::fake()->image('category.jpg'));
+        $category->addImage($image);
+
+        $this->assertEquals($image->toArray(), $category->image->toArray());
     }
 }

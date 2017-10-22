@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 
 class Category extends Model
@@ -30,8 +31,12 @@ class Category extends Model
             ->limit(3);
     }
 
-    public function addImage(Image $image)
+    public function addImage(UploadedFile $file)
     {
+        $image = Image::fromRequest($file);
+
         $this->image()->save($image);
+
+        return $image;
     }
 }

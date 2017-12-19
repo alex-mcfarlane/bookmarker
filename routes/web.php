@@ -11,15 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::patch('bookmarks/{id}', 'BookmarksController@partialUpdate');
+// only home and viewing bookmarks should be accessible to logged in users
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');\
 Route::resource('bookmarks', 'BookmarksController');
 
-Route::resource('categories', 'CategoriesController');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/logout', 'Auth\LoginController@logout');
+
+    Route::patch('bookmarks/{id}', 'BookmarksController@partialUpdate');
+
+    Route::resource('categories', 'CategoriesController');
+});

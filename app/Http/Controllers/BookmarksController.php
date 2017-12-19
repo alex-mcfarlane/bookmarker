@@ -21,6 +21,7 @@ class BookmarksController extends Controller
     {
         $this->bookmarkCreator = $bookmarkCreator;
         $this->bookmarkUpdater = $bookmarkUpdater;
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     /**

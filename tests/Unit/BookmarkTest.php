@@ -20,6 +20,13 @@ class BookmarkTest extends TestCase
 {
     use DatabaseMigrations;
 
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->seed('VisibilitiesTableSeeder');
+    }
+
     /**
      * @test
      */
@@ -39,14 +46,24 @@ class BookmarkTest extends TestCase
     /**
      * @test
      */
+    public function can_create_a_public_bookmark()
+    {
+        $bookmark = Bookmark::fromForm("http://google.com", 'Google', 'Search Engine');
+
+        $this->assertEquals($bookmark->visibility->name, 'Public');
+    }
+
+    /**
+     * @test
+     */
     public function can_filter_bookmarks()
     {
         $filter_date = Carbon::now();
         $filter_date->subSecond();
 
         $bookmark1 = Bookmark::fromForm("www.google.com", 'Google', 'Search Engine');
-        $bookmark2 = Bookmark::fromForm("www.laracasts.com", 'Laracasts', 'Laravel and PHP Tutorials', []);
-        $bookmark3 = Bookmark::fromForm("www.sherdog.com", 'Sherdog', 'MMA News', []);
+        $bookmark2 = Bookmark::fromForm("www.laracasts.com", 'Laracasts', 'Laravel and PHP Tutorials');
+        $bookmark3 = Bookmark::fromForm("www.sherdog.com", 'Sherdog', 'MMA News');
 
         $yesterday = Carbon::yesterday();
         $bookmark2->created_at = $yesterday;

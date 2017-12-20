@@ -11,4 +11,5 @@ npm-debug.log
 .env
 /public/assets
 /.sass-cache/*
+images
 /public/images

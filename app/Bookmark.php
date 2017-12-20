@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Exceptions\BaseException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
@@ -15,7 +16,7 @@ class Bookmark extends Model
      * @param $description
      * @return Bookmark
      */
-    public static function fromForm($url, $title, $description)
+    public static function fromForm($url, $title, $description, $visibility_id = 1)
     {
         $bookmark = self::make([
             'title' => $title,
@@ -24,6 +25,7 @@ class Bookmark extends Model
         ]);
 
         $bookmark->setUrl($url);
+        $bookmark->setVisibility($visibility_id);
         $bookmark->save();
 
         return $bookmark;
@@ -46,6 +48,11 @@ class Bookmark extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function visibility()
+    {
+        return $this->belongsTo('App\Visibility', 'visibility_id');
+    }
+
     /**
      * @param $url
      *
@@ -65,6 +72,15 @@ class Bookmark extends Model
         }
 
         $this->url = $value;
+    }
+
+    protected function setVisibility($visibility_id)
+    {
+        if($visibility = Visibility::find($visibility_id)) {
+            $this->visibility()->associate($visibility);
+        } else {
+            throw new BaseException('Unable to find an entry with the visibility id ' . $visibility_id, []);
+        }
     }
 
     public function setCategories(array $categoryIds)

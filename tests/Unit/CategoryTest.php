@@ -20,6 +20,13 @@ class CategoryTest extends TestCase
 {
     use DatabaseMigrations;
 
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->seed('VisibilitiesTableSeeder');
+    }
+
     /**
      * @test
      */
@@ -42,8 +49,8 @@ class CategoryTest extends TestCase
     public function can_add_an_image()
     {
         $category = Category::create(['title' => 'Test']);
-        $image = Image::fromRequest(UploadedFile::fake()->image('category.jpg'));
-        $category->addImage($image);
+        $fakeUpload = UploadedFile::fake()->image('category.jpg');
+        $image = $category->addImage($fakeUpload);
 
         $this->assertEquals($image->toArray(), $category->image->toArray());
     }

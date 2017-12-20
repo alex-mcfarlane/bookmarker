@@ -16,7 +16,7 @@ class Bookmark extends Model
      * @param $description
      * @return Bookmark
      */
-    public static function fromForm($url, $title, $description, $visibility_id = 1)
+    public static function fromForm($url, $title, $description, $visibilityId = 2)
     {
         $bookmark = self::make([
             'title' => $title,
@@ -25,20 +25,20 @@ class Bookmark extends Model
         ]);
 
         $bookmark->setUrl($url);
-        $bookmark->setVisibility($visibility_id);
+        $bookmark->setVisibility($visibilityId);
         $bookmark->save();
 
         return $bookmark;
     }
 
-    public function edit($url, $title, $description, $categoryIds)
+    public function edit($url, $title, $description, $categoryIds, $visibilityId)
     {
         $this->title = $title;
         $this->description = $description;
 
         $this->setUrl($url);
-
         $this->setCategories($categoryIds);
+        $this->setVisibility($visibilityId);
 
         return $this->save();
     }
@@ -74,12 +74,12 @@ class Bookmark extends Model
         $this->url = $value;
     }
 
-    protected function setVisibility($visibility_id)
+    protected function setVisibility($visibilityId)
     {
-        if($visibility = Visibility::find($visibility_id)) {
+        if($visibility = Visibility::find($visibilityId)) {
             $this->visibility()->associate($visibility);
         } else {
-            throw new BaseException('Unable to find an entry with the visibility id ' . $visibility_id, []);
+            throw new BaseException('Unable to find an entry with the visibility id ' . $visibilityId, []);
         }
     }
 

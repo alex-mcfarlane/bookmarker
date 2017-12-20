@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\BaseException;
 use App\Services\BookmarkCreator;
 use App\Services\BookmarkUpdater;
+use App\Visibility;
 use Illuminate\Http\Request;
 use App\Bookmark;
 use App\Category;
@@ -48,8 +49,9 @@ class BookmarksController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $visibilities = Visibility::all();
 
-        return view('bookmarks.create', compact('categories'));
+        return view('bookmarks.create', compact(['categories', 'visibilities']));
     }
 
     /**
@@ -60,7 +62,7 @@ class BookmarksController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['url', 'title', 'description']);
+        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
         $categories = $request->input('categories', []);
 
         try{
@@ -95,8 +97,9 @@ class BookmarksController extends Controller
     {
         $bookmark = Bookmark::find($id);
         $categories = Category::all();
+        $visibilities = Visibility::all();
 
-        return view('bookmarks.edit', ['bookmark' => $bookmark, 'categories' => $categories]);
+        return view('bookmarks.edit', ['bookmark' => $bookmark, 'categories' => $categories, 'visibilities' => $visibilities]);
     }
 
     /**
@@ -110,7 +113,7 @@ class BookmarksController extends Controller
     {
         $bookmark = Bookmark::find($id);
 
-        $input = $request->only(['url', 'title', 'description']);
+        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
         $categories = $request->input('categories', []);
 
         try {

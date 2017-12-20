@@ -79,6 +79,16 @@ class BookmarkTest extends TestCase
     /**
      * @test
      */
+    public function can_create_a_private_bookmark()
+    {
+        $bookmark = Bookmark::fromForm("http://google.com", 'Google', 'Search Engine', 1);
+
+        $this->assertEquals($bookmark->visibility->name, 'Private');
+    }
+
+    /**
+     * @test
+     */
 
     public function can_format_invalid_href()
     {

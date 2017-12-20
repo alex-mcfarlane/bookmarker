@@ -22,7 +22,7 @@ class BookmarkUpdater
             throw new BaseException('Invalid input', $this->validator->getErrors());
         }
 
-        $bookmark->edit($attrs['url'], $attrs['title'], $attrs['description'], $category_ids);
+        $bookmark->edit($attrs['url'], $attrs['title'], $attrs['description'], $category_ids, $attrs['visibility_id']);
 
         return $bookmark;
     }

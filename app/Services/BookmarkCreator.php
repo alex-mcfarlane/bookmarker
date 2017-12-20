@@ -24,7 +24,7 @@ class BookmarkCreator
             throw new BaseException("Bookmark exception", $this->validator->getErrors(), 412);
         }
 
-        $bookmark = Bookmark::fromForm($attrs['url'], $attrs['title'], $attrs['description']);
+        $bookmark = Bookmark::fromForm($attrs['url'], $attrs['title'], $attrs['description'], $attrs['visibility_id']);
 
         $bookmark->setCategories($category_ids);
 

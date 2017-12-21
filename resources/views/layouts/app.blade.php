@@ -27,7 +27,7 @@
                     @if(Auth::user())
                         <li><a href="/home">Home</a></li>
                     @endif
-                    <li><a href="/home">Discover</a></li>
+                    <li><a href="/discover">Discover</a></li>
                     @if(Auth::user())
                         <li><a href="{{url('logout')}}">Logout</a></li>
                     @else

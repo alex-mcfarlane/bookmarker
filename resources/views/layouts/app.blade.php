@@ -24,12 +24,15 @@
 
             <nav class="main-nav medium-6 column">
                 <ul class="menu">
-                    <li><a href="/home">Home</a></li>
+                    @if(Auth::user())
+                        <li><a href="/home">Home</a></li>
+                    @endif
                     <li><a href="/home">Discover</a></li>
                     @if(Auth::user())
                         <li><a href="{{url('logout')}}">Logout</a></li>
                     @else
                         <li><a href="{{url('login')}}">Login</a></li>
+                        <li><a href="{{url('register')}}">Register</a></li>
                     @endif
                 </ul>
             </nav>

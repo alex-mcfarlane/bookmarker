@@ -16,7 +16,7 @@ class Bookmark extends Model
      * @param $description
      * @return Bookmark
      */
-    public static function fromForm($url, $title, $description, $visibilityId = 2)
+    public static function fromForm($url, $title, $description, $visibilityId)
     {
         $bookmark = self::make([
             'title' => $title,
@@ -51,6 +51,11 @@ class Bookmark extends Model
     public function visibility()
     {
         return $this->belongsTo('App\Visibility', 'visibility_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     /**
@@ -129,6 +134,11 @@ class Bookmark extends Model
     public function addCategory(Category $category)
     {
         $this->categories()->save($category);
+    }
+
+    public function setUser(User $user)
+    {
+        $this->user()->save($user);
     }
 
     protected function removeCategory(Category $category)

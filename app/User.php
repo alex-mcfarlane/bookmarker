@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function createBookmark($url, $title, $description, $visibilityId = 2)
+    {
+        $bookmark = Bookmark::fromForm($url, $title, $description, $visibilityId);
+        $bookmark->setUser($this);
+
+        return $bookmark;
+    }
 }

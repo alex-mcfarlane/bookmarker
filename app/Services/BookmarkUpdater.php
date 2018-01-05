@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 use App\Bookmark;
+use App\BookmarkContext;
 use App\Exceptions\BaseException;
 use App\Validators\BookmarkValidator;
 
@@ -22,7 +23,8 @@ class BookmarkUpdater
             throw new BaseException('Invalid input', $this->validator->getErrors());
         }
 
-        $bookmark->edit($attrs['url'], $attrs['title'], $attrs['description'], $category_ids, $attrs['visibility_id']);
+        $context = new BookmarkContext($attrs['url'], $attrs['title'], $attrs['description']);
+        $bookmark->edit($context, $category_ids, $attrs['visibility_id']);
 
         return $bookmark;
     }

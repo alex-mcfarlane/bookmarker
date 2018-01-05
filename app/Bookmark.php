@@ -11,32 +11,31 @@ class Bookmark extends Model
     protected $guarded = [];
 
     /**
-     * @param $url
-     * @param $title
-     * @param $description
+     * @param BookmarkContext $context
+     * * @param int $visibilityId
      * @return Bookmark
      */
-    public static function fromForm($url, $title, $description, $visibilityId)
+    public static function forUser(BookmarkContext $context, $visibilityId)
     {
         $bookmark = self::make([
-            'title' => $title,
-            'description' => $description,
+            'title' => $context->getTitle(),
+            'description' => $context->getDescription(),
             'read' => 0
         ]);
 
-        $bookmark->setUrl($url);
+        $bookmark->setUrl($context->getUrl());
         $bookmark->setVisibility($visibilityId);
         $bookmark->save();
 
         return $bookmark;
     }
 
-    public function edit($url, $title, $description, $categoryIds, $visibilityId)
+    public function edit(BookmarkContext $context, $categoryIds, $visibilityId)
     {
-        $this->title = $title;
-        $this->description = $description;
+        $this->title = $context->getTitle();
+        $this->description = $context->getDescription();
 
-        $this->setUrl($url);
+        $this->setUrl($context->getUrl());
         $this->setCategories($categoryIds);
         $this->setVisibility($visibilityId);
 

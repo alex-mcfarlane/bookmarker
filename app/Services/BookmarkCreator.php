@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Bookmark;
+use App\BookmarkContext;
 use App\Category;
 use App\Exceptions\BaseException;
 use App\Validators\BookmarkValidator;
@@ -25,8 +26,10 @@ class BookmarkCreator
         }
 
         $user = Auth::user();
+        $context = new BookmarkContext($attrs['url'], $attrs['title'], $attrs['description']);
 
-        $bookmark = $user->createBookmark($attrs['url'], $attrs['title'], $attrs['description'], $attrs['visibility_id']);
+        // create bookmark for user and set the categories
+        $bookmark = $user->createBookmark($context, $attrs['visibility_id']);
         $bookmark->setCategories($category_ids);
 
         return $bookmark;

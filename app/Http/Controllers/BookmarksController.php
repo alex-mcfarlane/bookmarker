@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\BaseException;
+use App\Http\Requests\UpdateBookmark;
 use App\Services\BookmarkCreator;
 use App\Services\BookmarkUpdater;
 use App\Visibility;
@@ -93,7 +94,7 @@ class BookmarksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(UpdateBookmark $request, $id)
     {
         $bookmark = Bookmark::find($id);
         $categories = Category::all();
@@ -109,7 +110,7 @@ class BookmarksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBookmark $request, $id)
     {
         $bookmark = Bookmark::find($id);
 
@@ -130,12 +131,9 @@ class BookmarksController extends Controller
         $bookmark = Bookmark::find($id);
 
         if($request->has('read')) {
-            $isRead = $request->input('read');
-
-            if($isRead) {
+            if ($request->input('read')) {
                 $bookmark->archive();
-            }
-            else {
+            } else {
                 $bookmark->open();
             }
         }

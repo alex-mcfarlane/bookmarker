@@ -33,7 +33,7 @@ class BookmarksController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = $request->all();
+        $filters = ['owner' => Auth::id()] + $request->all();
         $query = new BookmarkQuery($filters);
         $builder = $query->applyFilters(Bookmark::query());
 

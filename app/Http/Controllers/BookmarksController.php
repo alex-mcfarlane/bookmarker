@@ -94,9 +94,12 @@ class BookmarksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(UpdateBookmark $request, $id)
+    public function edit($id)
     {
         $bookmark = Bookmark::find($id);
+        // make sure user is authorized to edit this bookmark
+        $this->authorize('update', $bookmark);
+
         $categories = Category::all();
         $visibilities = Visibility::all();
 
@@ -110,9 +113,11 @@ class BookmarksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookmark $request, $id)
+    public function update(Request $request, $id)
     {
         $bookmark = Bookmark::find($id);
+        // make sure user is authorized to edit this bookmark
+        $this->authorize('update', $bookmark);
 
         $input = $request->only(['url', 'title', 'description', 'visibility_id']);
         $categories = $request->input('categories', []);

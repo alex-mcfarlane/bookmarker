@@ -10,7 +10,9 @@ namespace Tests\Unit;
 
 
 use App\Bookmark;
+use App\BookmarkContext;
 use App\Category;
+use App\User;
 use Carbon\Carbon;
 use App\Queries\BookmarkQuery;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -30,11 +32,27 @@ class BookmarkTest extends TestCase
     /**
      * @test
      */
+    public function user_can_create_a_bookmark()
+    {
+        $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
+        $user = factory(User::class)->create();
+
+        $bookmark = $user->createBookmark($context);
+
+        $this->assertEquals($bookmark->user->id, $user->id);
+    }
+
+
+    /**
+     * @test
+     */
     public function can_create_a_categorized_bookmark()
     {
         $category = Category::create(['title' => 'Basics']);
+        $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
+        $user = factory(User::class)->create();
 
-        $bookmark = Bookmark::fromForm("http://google.com", 'Google', 'Search Engine');
+        $bookmark = $user->createBookmark($context);
         $bookmark->addCategory($category);
 
         $this->assertEquals($bookmark->url, "http://google.com");
@@ -48,7 +66,10 @@ class BookmarkTest extends TestCase
      */
     public function can_create_a_public_bookmark()
     {
-        $bookmark = Bookmark::fromForm("http://google.com", 'Google', 'Search Engine');
+        $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
+        $user = factory(User::class)->create();
+
+        $bookmark = $user->createBookmark($context);
 
         $this->assertEquals($bookmark->visibility->name, 'Public');
     }
@@ -58,12 +79,16 @@ class BookmarkTest extends TestCase
      */
     public function can_filter_bookmarks()
     {
+        $user = factory(User::class)->create();
+        $context1 = new BookmarkContext("www.google.com", 'Google', 'Search Engine');
+        $context2 = new BookmarkContext("www.laracasts.com", 'Laracasts', 'Laravel and PHP Tutorials');
+        $context3 = new BookmarkContext("www.sherdog.com", 'Sherdog', 'MMA News');
         $filter_date = Carbon::now();
         $filter_date->subSecond();
 
-        $bookmark1 = Bookmark::fromForm("www.google.com", 'Google', 'Search Engine');
-        $bookmark2 = Bookmark::fromForm("www.laracasts.com", 'Laracasts', 'Laravel and PHP Tutorials');
-        $bookmark3 = Bookmark::fromForm("www.sherdog.com", 'Sherdog', 'MMA News');
+        $bookmark1 = $user->createBookmark($context1);
+        $bookmark2 = $user->createBookmark($context2);
+        $bookmark3 = $user->createBookmark($context3);
 
         $yesterday = Carbon::yesterday();
         $bookmark2->created_at = $yesterday;
@@ -81,7 +106,10 @@ class BookmarkTest extends TestCase
      */
     public function can_create_a_private_bookmark()
     {
-        $bookmark = Bookmark::fromForm("http://google.com", 'Google', 'Search Engine', 1);
+        $user = factory(User::class)->create();
+        $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
+
+        $bookmark = $user->createBookmark($context, 1);
 
         $this->assertEquals($bookmark->visibility->name, 'Private');
     }
@@ -92,7 +120,10 @@ class BookmarkTest extends TestCase
 
     public function can_format_invalid_href()
     {
-        $bookmark = Bookmark::fromForm('www.google.com', 'Google', 'Search Engine');
+        $user = factory(User::class)->create();
+        $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
+
+        $bookmark = $user->createBookmark($context);
 
         $this->assertEquals('http://google.com', $bookmark->url);
     }

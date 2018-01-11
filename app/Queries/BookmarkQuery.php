@@ -2,6 +2,9 @@
 
 namespace App\Queries;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class BookmarkQuery extends Query
 {
     protected $validFields = ['read'];
@@ -28,10 +31,19 @@ class BookmarkQuery extends Query
 
     protected function newest($switch)
     {
-        if($switch) {
+        if ($switch) {
             return $this->builder->latest();
         }
         return $this->builder;
+    }
+
+    protected function owner($id)
+    {
+        if(User::find($id) == null) {
+            throw new \Exception('No user found for the id ' . $id);
+        }
+
+        return $this->builder->where('user_id', $id);
     }
 
     private function validateDate($date)

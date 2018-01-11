@@ -26,6 +26,14 @@ class BookmarkQuery extends Query
         return $this->builder->where('created_at', '<', $date);
     }
 
+    protected function newest($switch)
+    {
+        if($switch) {
+            return $this->builder->latest();
+        }
+        return $this->builder;
+    }
+
     private function validateDate($date)
     {
         $splitDate = explode('-', $date);

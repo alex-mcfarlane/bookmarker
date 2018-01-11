@@ -12,10 +12,11 @@ class Bookmark extends Model
 
     /**
      * @param BookmarkContext $context
-     * * @param int $visibilityId
+     * @param int $visibilityId
+     * @param User $user
      * @return Bookmark
      */
-    public static function forUser(BookmarkContext $context, $visibilityId)
+    public static function forUser(BookmarkContext $context, $visibilityId, User $user)
     {
         $bookmark = self::make([
             'title' => $context->getTitle(),
@@ -25,6 +26,7 @@ class Bookmark extends Model
 
         $bookmark->setUrl($context->getUrl());
         $bookmark->setVisibility($visibilityId);
+        $bookmark->setUser($user);
         $bookmark->save();
 
         return $bookmark;
@@ -137,7 +139,7 @@ class Bookmark extends Model
 
     public function setUser(User $user)
     {
-        $this->user()->save($user);
+        $this->user()->associate($user);
     }
 
     protected function removeCategory(Category $category)

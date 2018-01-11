@@ -6,6 +6,7 @@ use App\BookmarkContext;
 use App\Category;
 use App\Exceptions\BaseException;
 use App\Validators\BookmarkValidator;
+use Illuminate\Support\Facades\Auth;
 
 class BookmarkCreator
 {

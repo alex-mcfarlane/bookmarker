@@ -35,7 +35,7 @@ class BookmarkTest extends TestCase
     public function user_can_create_a_bookmark()
     {
         $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
 
         $bookmark = $user->createBookmark($context);
 
@@ -50,7 +50,7 @@ class BookmarkTest extends TestCase
     {
         $category = Category::create(['title' => 'Basics']);
         $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
 
         $bookmark = $user->createBookmark($context);
         $bookmark->addCategory($category);
@@ -67,7 +67,7 @@ class BookmarkTest extends TestCase
     public function can_create_a_public_bookmark()
     {
         $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
 
         $bookmark = $user->createBookmark($context);
 
@@ -79,7 +79,7 @@ class BookmarkTest extends TestCase
      */
     public function can_filter_bookmarks()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
         $context1 = new BookmarkContext("www.google.com", 'Google', 'Search Engine');
         $context2 = new BookmarkContext("www.laracasts.com", 'Laracasts', 'Laravel and PHP Tutorials');
         $context3 = new BookmarkContext("www.sherdog.com", 'Sherdog', 'MMA News');
@@ -106,7 +106,7 @@ class BookmarkTest extends TestCase
      */
     public function can_create_a_private_bookmark()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
         $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
 
         $bookmark = $user->createBookmark($context, 1);
@@ -120,7 +120,7 @@ class BookmarkTest extends TestCase
 
     public function can_format_invalid_href()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
         $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
 
         $bookmark = $user->createBookmark($context);

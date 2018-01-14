@@ -71,7 +71,7 @@ class BookmarksController extends Controller
             return back()->withErrors($e->getErrors());
         }
 
-        return redirect()->with('success', 'Bookmark has been created!')->route('bookmarks.show', ['id' => $bookmark->id]);
+        return redirect()->route('bookmarks.show', ['id' => $bookmark->id])->with('success', 'Bookmark has been created!');
     }
 
     /**

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Bookmark;
 use App\Category;
 use App\Queries\BookmarkQuery;
+use Illuminate\Support\Facades\Auth;
 
 class BookmarksController extends Controller
 {

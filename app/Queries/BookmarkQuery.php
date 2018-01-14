@@ -46,6 +46,15 @@ class BookmarkQuery extends Query
         return $this->builder->where('user_id', $id);
     }
 
+    protected function excludeUsers(array $userIds)
+    {
+        foreach($userIds as $id) {
+            $this->builder->whereNotIn('user_id', $userIds);
+        }
+
+        return $this->builder;
+    }
+
     private function validateDate($date)
     {
         $splitDate = explode('-', $date);

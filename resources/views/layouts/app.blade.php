@@ -48,6 +48,16 @@
     </header>
 
     <div class="content">
+        <div class="row">
+            <div class="column small-12 medium-10 large-8">
+                @if(session()->has('success'))
+                    <div class="alert-box success">
+                        <p>{{session()->get('success')}}</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+
         @yield('content')
     </div>
 </section>

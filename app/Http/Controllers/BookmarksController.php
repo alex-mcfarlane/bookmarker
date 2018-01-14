@@ -73,7 +73,7 @@ class BookmarksController extends Controller
             return back()->withErrors($e->getErrors());
         }
 
-        return redirect()->route('bookmarks.show', ['id' => $bookmark->id]);
+        return redirect()->route('bookmarks.show', ['id' => $bookmark->id])->with('success', 'Bookmark has been created!');
     }
 
     /**
@@ -126,7 +126,7 @@ class BookmarksController extends Controller
         try {
             $updatedBookmark = $this->bookmarkUpdater->update($bookmark, $input, $categories);
 
-            return redirect()->route('bookmarks.show', ['id' => $updatedBookmark->id]);
+            return redirect()->with('success', 'Bookmark has been successfully updated!')->route('bookmarks.show', ['id' => $updatedBookmark->id]);
         } catch(BaseException $e) {
             return back()->withInput($request->input())->withErrors($e->getErrors());
         }

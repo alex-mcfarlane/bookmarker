@@ -10,4 +10,6 @@ Homestead.yaml
 npm-debug.log
 .env
 /public/assets
-/.sass-cache
+/.sass-cache/*
+images
+/public/images

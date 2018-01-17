@@ -16,87 +16,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<aside id="main-sidebar">
-    <div id="nav-icon-wrapper">
-        <div id="nav-icon">
-            <a href="#">
-                <span></span>
-                <span></span>
-                <span></span>
-            </a>
-        </div>
-    </div>
-
-    <nav>
-        <ul class="menu sidebar-navigation">
-            <li class="expandable">
-                <a href="#">
-                    <div class="icon-container">
-                        <i class="fa fa-bookmark"></i>
-                    </div>
-                    <span class="menu-text">Bookmarks</span>
-                </a>
-
-                <ul class="menu sub-menu">
-                    <li><a href="/bookmarks/create">New</a></li>
-                    <li><a href="/bookmarks?read=0">Unread</a></li>
-                    <li><a href="/bookmarks?read=1">Archived</a></li>
-                    <li><a href="/bookmarks">All</a></li>
-                </ul>
-            </li>
-            <li class="expandable">
-                <a href="#">
-                    <div class="icon-container">
-                        <i class="fa fa-tags"></i>
-                    </div>
-
-                    <span class="menu-text">Categories</span>
-                </a>
-
-                <ul class="menu sub-menu">
-                    <li><a href="/categories/create">New</a></li>
-                    <li><a href="">All</a></li>
-                    <li><a href="">Unread</a></li>
-                    <li><a href="">Archived</a></li>
-                </ul>
-            </li>
-            <li class="expandable">
-                <a href="#">
-                    <div class="icon-container">
-                        <i class="fa fa-binoculars"></i>
-                    </div>
-
-                    <span class="menu-text">Discover</span>
-                </a>
-
-                <ul class="menu sub-menu">
-                    <li><a href="/bookmarks/create">New</a></li>
-                    <li><a href="">All</a></li>
-                    <li><a href="">Unread</a></li>
-                    <li><a href="">Archived</a></li>
-                </ul>
-            </li>
-            <li class="expandable">
-                <a href="#">
-                    <div class="icon-container">
-                        <i class="fa fa-address-card-o"></i>
-                    </div>
-
-                    <span class="menu-text">Account</span>
-                </a>
-
-                <ul class="menu sub-menu">
-                    <li><a href="/bookmarks/create">New</a></li>
-                    <li><a href="">All</a></li>
-                    <li><a href="">Unread</a></li>
-                    <li><a href="">Archived</a></li>
-                </ul>
-            </li>
-
-        </ul>
-    </nav>
-
-</aside>
+@include('layouts.sidebar')
 
 <section id="main-content">
     <header id="main-header">
@@ -104,8 +24,16 @@
 
             <nav class="main-nav medium-6 column">
                 <ul class="menu">
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/home">Discover</a></li>
+                    @if(Auth::user())
+                        <li><a href="/home">Home</a></li>
+                    @endif
+                    <li><a href="/discover">Discover</a></li>
+                    @if(Auth::user())
+                        <li><a href="{{url('logout')}}">Logout</a></li>
+                    @else
+                        <li><a href="{{url('login')}}">Login</a></li>
+                        <li><a href="{{url('register')}}">Register</a></li>
+                    @endif
                 </ul>
             </nav>
 
@@ -120,6 +48,16 @@
     </header>
 
     <div class="content">
+        <div class="row">
+            <div class="column small-12 medium-10 large-8">
+                @if(session()->has('success'))
+                    <div class="alert-box success">
+                        <p>{{session()->get('success')}}</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+
         @yield('content')
     </div>
 </section>

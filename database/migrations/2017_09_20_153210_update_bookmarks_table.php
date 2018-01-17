@@ -14,7 +14,7 @@ class UpdateBookmarksTable extends Migration
     public function up()
     {
         Schema::table('bookmarks', function(Blueprint $table) {
-            $table->boolean('read');
+            $table->boolean('read')->default(0);
         });
     }
 

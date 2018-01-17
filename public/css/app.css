@@ -175,46 +175,60 @@ a.link {
   padding-top: 0;
   padding-bottom: 0; }
 
-.bookmark-listing {
-  background: #fff; }
+.listing {
+  margin-bottom: 1.5rem;
+  padding: .667em 1em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
 
-.bookmark-container {
+.detailed {
+  padding: 1rem; }
+
+.category {
+  position: relative;
+  height: 130px;
+  background: rgba(1, 1, 1, 0.75);
+  color: #fff; }
+  .category .title-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center; }
+
+.bookmark {
   background: #fff; }
-  .bookmark-container.listing {
-    margin-bottom: 1.5rem;
-    padding: .667em 1em; }
-  .bookmark-container.detailed {
-    padding: 1rem; }
-  .bookmark-container .title h2, .bookmark-container .title span {
+  .bookmark .title h2, .bookmark .title span {
     margin-right: 1rem;
     display: inline;
     vertical-align: middle; }
-  .bookmark-container .title span {
+  .bookmark .title span {
     padding: .296rem;
     font-size: .667rem; }
-  .bookmark-container .tagline {
+  .bookmark .tagline {
     display: flex;
     align-items: center;
     justify-content: flex-end; }
-    .bookmark-container .tagline .flex {
+    .bookmark .tagline .flex {
       flex: 1; }
-  .bookmark-container .bookmark-meta-info img, .bookmark-container .bookmark-meta-info p {
+  .bookmark .bookmark-meta-info img, .bookmark .bookmark-meta-info p {
     display: inline-block;
     vertical-align: middle;
     margin-right: .667rem; }
-  .bookmark-container .bookmark-meta-info p {
+  .bookmark .bookmark-meta-info p {
     max-width: 80%;
     margin-bottom: 0;
     line-height: 1.2; }
-  .bookmark-container .actions-container {
+  .bookmark .actions-container {
     float: right;
     height: 16px; }
-    .bookmark-container .actions-container li {
+    .bookmark .actions-container li {
       display: inline-block;
       margin-right: .667em; }
-      .bookmark-container .actions-container li:last-child {
+      .bookmark .actions-container li:last-child {
         margin-right: 0; }
-      .bookmark-container .actions-container li button {
+      .bookmark .actions-container li button {
         padding: 0;
         background-color: transparent;
         color: #333; }

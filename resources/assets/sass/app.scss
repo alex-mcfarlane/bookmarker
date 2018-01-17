@@ -15,6 +15,7 @@ $blue: #34495e;
 $midnight-blue: #2c3e50;
 $light-blue: #008CBA;
 $silver: #ecf0f1;
+$category-bg: #95a5a6;
 $font-color: #333;
 
 $navbar-height: 50px;
@@ -268,21 +269,34 @@ a.link {
   }
 }
 
-.bookmark-listing{
-  background:#fff;
-
+.listing{
+  margin-bottom: 1.5rem;
+  padding:.667em 1em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.detailed {
+  padding:1rem;
 }
 
-.bookmark-container {
-  background: #fff;
+.category {
+  position: relative;
+  height: 130px;
+  background: rgba(1, 1, 1, .75);
+  color: #fff;
 
-  &.listing{
-    margin-bottom: 1.5rem;
-    padding:.667em 1em;
+  .title-container {
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    text-align: center;
   }
-  &.detailed {
-    padding:1rem;
-  }
+}
+
+.bookmark {
+  background: #fff;
 
   .title{
     h2, span{

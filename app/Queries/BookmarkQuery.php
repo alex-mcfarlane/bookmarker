@@ -2,6 +2,9 @@
 
 namespace App\Queries;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class BookmarkQuery extends Query
 {
     protected $validFields = ['read'];
@@ -24,6 +27,32 @@ class BookmarkQuery extends Query
         }
 
         return $this->builder->where('created_at', '<', $date);
+    }
+
+    protected function newest($switch)
+    {
+        if ($switch) {
+            return $this->builder->latest();
+        }
+        return $this->builder;
+    }
+
+    protected function owner($id)
+    {
+        if(User::find($id) == null) {
+            throw new \Exception('No user found for the id ' . $id);
+        }
+
+        return $this->builder->where('user_id', $id);
+    }
+
+    protected function excludeUsers(array $userIds)
+    {
+        foreach($userIds as $id) {
+            $this->builder->whereNotIn('user_id', $userIds);
+        }
+
+        return $this->builder;
     }
 
     private function validateDate($date)

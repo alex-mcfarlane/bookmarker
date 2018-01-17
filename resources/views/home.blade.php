@@ -39,6 +39,22 @@
         </form>
     </section>
 
+    @if($categories->count() > 0)
+        <div class="row">
+            <div class="medium-6 medium-centered columns">
+                @foreach($categories as $key => $category)
+                    @if($key % 3 == 0)
+                        <div class="clearfix"></div>
+                    @endif
+
+                    <div class="medium-3 columns">
+                        @include('categories.listing', ['category' => $category])
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <div class="row">
     @foreach($bookmarks as $key => $bookmark)
         @if($key % 3 == 0)

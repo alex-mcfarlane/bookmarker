@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'name', 'email', 'password',
     ];
 
     /**
@@ -26,4 +26,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @param BookmarkContext $context
+     * @param int $visibilityId
+     * @return Bookmark
+     */
+    public function createBookmark(BookmarkContext $context, $visibilityId = 2)
+    {
+        $bookmark = Bookmark::forUser($context, $visibilityId, $this);
+        $bookmark->setUser($this);
+
+        return $bookmark;
+    }
 }

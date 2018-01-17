@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 abstract class Query
 {
+    /**
+     * @var Builder
+     */
     protected $builder;
     protected $validFields = [];
     protected $params;

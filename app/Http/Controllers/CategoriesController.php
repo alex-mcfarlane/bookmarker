@@ -15,7 +15,16 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        Category::create(['title' => $request->get('title')]);
+        $category = Category::create(['title' => $request->get('title')]);
+
+        try{
+            $category->addImage($request->file('image'));
+        } catch(\Exception $e) {
+            $category->delete();
+
+            return redirect()->back()->withErrors($e->getMessage())->withInput();
+        }
+
 
         return redirect()->route('home');
     }

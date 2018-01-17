@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Exceptions\BaseException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
@@ -10,33 +11,35 @@ class Bookmark extends Model
     protected $guarded = [];
 
     /**
-     * @param $url
-     * @param $title
-     * @param $description
+     * @param BookmarkContext $context
+     * @param int $visibilityId
+     * @param User $user
      * @return Bookmark
      */
-    public static function fromForm($url, $title, $description)
+    public static function forUser(BookmarkContext $context, $visibilityId, User $user)
     {
         $bookmark = self::make([
-            'title' => $title,
-            'description' => $description,
+            'title' => $context->getTitle(),
+            'description' => $context->getDescription(),
             'read' => 0
         ]);
 
-        $bookmark->setUrl($url);
+        $bookmark->setUrl($context->getUrl());
+        $bookmark->setVisibility($visibilityId);
+        $bookmark->setUser($user);
         $bookmark->save();
 
         return $bookmark;
     }
 
-    public function edit($url, $title, $description, $categoryIds)
+    public function edit(BookmarkContext $context, $categoryIds, $visibilityId)
     {
-        $this->title = $title;
-        $this->description = $description;
+        $this->title = $context->getTitle();
+        $this->description = $context->getDescription();
 
-        $this->setUrl($url);
-
+        $this->setUrl($context->getUrl());
         $this->setCategories($categoryIds);
+        $this->setVisibility($visibilityId);
 
         return $this->save();
     }
@@ -44,6 +47,16 @@ class Bookmark extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function visibility()
+    {
+        return $this->belongsTo('App\Visibility', 'visibility_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     /**
@@ -65,6 +78,15 @@ class Bookmark extends Model
         }
 
         $this->url = $value;
+    }
+
+    protected function setVisibility($visibilityId)
+    {
+        if($visibility = Visibility::find($visibilityId)) {
+            $this->visibility()->associate($visibility);
+        } else {
+            throw new BaseException('Unable to find an entry with the visibility id ' . $visibilityId, []);
+        }
     }
 
     public function setCategories(array $categoryIds)
@@ -110,9 +132,14 @@ class Bookmark extends Model
         return $parsedUrl['host'];
     }
 
-    protected function addCategory(Category $category)
+    public function addCategory(Category $category)
     {
         $this->categories()->save($category);
+    }
+
+    public function setUser(User $user)
+    {
+        $this->user()->associate($user);
     }
 
     protected function removeCategory(Category $category)

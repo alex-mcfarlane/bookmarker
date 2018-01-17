@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\BaseException;
+use App\Http\Requests\UpdateBookmark;
 use App\Services\BookmarkCreator;
 use App\Services\BookmarkUpdater;
+use App\Visibility;
 use Illuminate\Http\Request;
 use App\Bookmark;
 use App\Category;
 use App\Queries\BookmarkQuery;
+use Illuminate\Support\Facades\Auth;
 
 class BookmarksController extends Controller
 {
@@ -21,6 +24,7 @@ class BookmarksController extends Controller
     {
         $this->bookmarkCreator = $bookmarkCreator;
         $this->bookmarkUpdater = $bookmarkUpdater;
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     /**
@@ -30,7 +34,7 @@ class BookmarksController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = $request->all();
+        $filters = ['owner' => Auth::id()] + $request->all();
         $query = new BookmarkQuery($filters);
         $builder = $query->applyFilters(Bookmark::query());
 
@@ -47,8 +51,9 @@ class BookmarksController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $visibilities = Visibility::all();
 
-        return view('bookmarks.create', compact('categories'));
+        return view('bookmarks.create', compact(['categories', 'visibilities']));
     }
 
     /**
@@ -59,7 +64,7 @@ class BookmarksController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->only(['url', 'title', 'description']);
+        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
         $categories = $request->input('categories', []);
 
         try{
@@ -68,7 +73,7 @@ class BookmarksController extends Controller
             return back()->withErrors($e->getErrors());
         }
 
-        return redirect()->route('bookmarks.show', ['id' => $bookmark->id]);
+        return redirect()->route('bookmarks.show', ['id' => $bookmark->id])->with('success', 'Bookmark has been created!');
     }
 
     /**
@@ -93,9 +98,13 @@ class BookmarksController extends Controller
     public function edit($id)
     {
         $bookmark = Bookmark::find($id);
-        $categories = Category::all();
+        // make sure user is authorized to edit this bookmark
+        $this->authorize('update', $bookmark);
 
-        return view('bookmarks.edit', ['bookmark' => $bookmark, 'categories' => $categories]);
+        $categories = Category::all();
+        $visibilities = Visibility::all();
+
+        return view('bookmarks.edit', ['bookmark' => $bookmark, 'categories' => $categories, 'visibilities' => $visibilities]);
     }
 
     /**
@@ -108,14 +117,16 @@ class BookmarksController extends Controller
     public function update(Request $request, $id)
     {
         $bookmark = Bookmark::find($id);
+        // make sure user is authorized to edit this bookmark
+        $this->authorize('update', $bookmark);
 
-        $input = $request->only(['url', 'title', 'description']);
+        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
         $categories = $request->input('categories', []);
 
         try {
             $updatedBookmark = $this->bookmarkUpdater->update($bookmark, $input, $categories);
 
-            return redirect()->route('bookmarks.show', ['id' => $updatedBookmark->id]);
+            return redirect()->with('success', 'Bookmark has been successfully updated!')->route('bookmarks.show', ['id' => $updatedBookmark->id]);
         } catch(BaseException $e) {
             return back()->withInput($request->input())->withErrors($e->getErrors());
         }
@@ -126,12 +137,9 @@ class BookmarksController extends Controller
         $bookmark = Bookmark::find($id);
 
         if($request->has('read')) {
-            $isRead = $request->input('read');
-
-            if($isRead) {
+            if ($request->input('read')) {
                 $bookmark->archive();
-            }
-            else {
+            } else {
                 $bookmark->open();
             }
         }

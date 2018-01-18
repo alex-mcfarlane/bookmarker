@@ -44,11 +44,11 @@ class BookmarksController extends Controller
 
         // if authenticated user, include their private bookmarks in the listing
         if(Auth::check()) {
-            $privateBookmarksQuery = new BookmarkQuery(['visibility' => 'private']);
+            $privateBookmarksQuery = new BookmarkQuery(['visibility' => 'private', 'owner' => Auth::id()]);
 
             $builder = $privateBookmarksQuery->applyFilters(Bookmark::query());
 
-            $bookmarks += $builder->get();
+            $bookmarks = $bookmarks->merge($builder->get());
         }
 
         return view('bookmarks.index', ['bookmarks'=>$bookmarks]);

@@ -11,7 +11,7 @@ class DiscoverController extends Controller
 {
     public function index(Request $request)
     {
-        $params = ['newest' => true];
+        $params = ['newest' => true, 'visibility' => 'public'];
 
         // exclude current users bookmarks
         if($userId = Auth::id()) {

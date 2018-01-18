@@ -59,9 +59,9 @@ class BookmarkQuery extends Query
     {
         switch($toggle) {
             case 'public':
-                return $this->builder->visibility('Public');
+                return $this->builder->withVisibility('Public');
             case 'private':
-                return $this->builder->visibility('Private');
+                return $this->builder->withVisibility('Private');
             default:
                 return $this->builder;
         }

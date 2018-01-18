@@ -11,7 +11,7 @@
 
     <nav>
         <ul class="menu sidebar-navigation">
-            @if(Auth::user())
+            @if(Auth::check())
                 <li class="expandable">
                     <a href="#">
                         <div class="icon-container">
@@ -24,11 +24,9 @@
                         <li><a href="/bookmarks/create">New</a></li>
                         <li><a href="/bookmarks?read=0">Unread</a></li>
                         <li><a href="/bookmarks?read=1">Archived</a></li>
-                        <li><a href="/bookmarks">All</a></li>
+                        <li><a href="/bookmarks?owner={{Auth::id()}}">All</a></li>
                     </ul>
                 </li>
-            @endif
-            @if(Auth::user())
                 <li class="expandable">
                     <a href="#">
                         <div class="icon-container">

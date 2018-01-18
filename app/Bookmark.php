@@ -156,10 +156,10 @@ class Bookmark extends Model
     /**
      * Query scopes
      */
-    public function scopeVisibility(Builder $query, $name)
+    public function scopeWithVisibility(Builder $query, $name)
     {
         return $query->whereHas('visibility', function($q) use ($name) {
-            return $q->where('title', $name);
+            return $q->where('name', $name);
         });
     }
 }

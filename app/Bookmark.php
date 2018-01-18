@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exceptions\BaseException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
@@ -150,5 +151,15 @@ class Bookmark extends Model
     private function urlHeadHasString($needle, $haystack)
     {
         return substr($haystack, 0, strlen($needle)) == $needle;
+    }
+
+    /**
+     * Query scopes
+     */
+    public function scopeVisibility(Builder $query, $name)
+    {
+        return $query->whereHas('visibility', function($q) use ($name) {
+            return $q->where('title', $name);
+        });
     }
 }

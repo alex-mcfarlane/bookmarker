@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/', 'DiscoverController@index');
 Route::get('/discover', 'DiscoverController@index');
 Route::resource('bookmarks', 'BookmarksController');
+Route::get('users/{id}/bookmarks', 'UsersController@bookmarks');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');

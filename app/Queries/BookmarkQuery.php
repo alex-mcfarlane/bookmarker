@@ -55,6 +55,18 @@ class BookmarkQuery extends Query
         return $this->builder;
     }
 
+    protected function visibility($toggle)
+    {
+        switch($toggle) {
+            case 'public':
+                return $this->builder->visibility('Public');
+            case 'private':
+                return $this->builder->visibility('Private');
+            default:
+                return $this->builder;
+        }
+    }
+
     private function validateDate($date)
     {
         $splitDate = explode('-', $date);

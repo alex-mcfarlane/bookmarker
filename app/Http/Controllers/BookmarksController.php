@@ -137,7 +137,7 @@ class BookmarksController extends Controller
         try {
             $updatedBookmark = $this->bookmarkUpdater->update($bookmark, $input, $categories);
 
-            return redirect()->with('success', 'Bookmark has been successfully updated!')->route('bookmarks.show', ['id' => $updatedBookmark->id]);
+            return redirect()->route('bookmarks.show', ['id' => $updatedBookmark->id])->with('success', 'Bookmark has been successfully updated!');
         } catch(BaseException $e) {
             return back()->withInput($request->input())->withErrors($e->getErrors());
         }

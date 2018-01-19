@@ -21,44 +21,40 @@
 
                 <p>{{$bookmark->description}}</p>
 
-                <div class="actions-container">
-                    <ul class="menu">
-                        <li>
-                            <a href="{{url('bookmarks/'.$bookmark->id.'/edit')}}">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                        </li>
-                        <li>
-                            @if($bookmark->read)
+                @if(Auth::id() == $bookmark->user->id)
+                    <div class="actions-container">
+                        <ul class="menu">
+                            <li>
+                                <a href="{{url('bookmarks/'.$bookmark->id.'/edit')}}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            </li>
+                            <li>
                                 <form method="POST" action="{{url('bookmarks/'.$bookmark->id)}}">
                                     {{csrf_field()}}
                                     {{ method_field('PATCH') }}
 
-                                    <input type="hidden" name="read" value="0"/>
+                                    @if($bookmark->read)
+                                        <input type="hidden" name="read" value="0"/>
 
-                                    <button type="submit" title="Mark as Open">
-                                        <i class="fa fa-envelope"></i>
-                                    </button>
+                                        <button type="submit" title="Mark as Open">
+                                            <i class="fa fa-envelope"></i>
+                                        </button>
+                                    @else
+                                        <input type="hidden" name="read" value="1"/>
+
+                                        <button type="submit" title="Archive">
+                                            <i class="fa fa-envelope-open"></i>
+                                        </button>
+                                    @endif
                                 </form>
-                            @else
-                                <form method="POST" action="{{url('bookmarks/'.$bookmark->id)}}">
-                                    {{csrf_field()}}
-                                    {{ method_field('Patch') }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix">
 
-                                    <input type="hidden" name="read" value="1"/>
-
-                                    <button type="submit" title="Archive">
-                                        <i class="fa fa-envelope-open"></i>
-                                    </button>
-                                </form>
-                            @endif
-
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix">
-
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

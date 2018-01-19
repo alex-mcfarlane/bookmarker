@@ -13,12 +13,6 @@
 
 Auth::routes();
 
-// only home and viewing bookmarks should be accessible to logged in users
-Route::get('/', 'DiscoverController@index');
-Route::get('/discover', 'DiscoverController@index');
-Route::resource('bookmarks', 'BookmarksController');
-Route::get('users/{id}/bookmarks', 'UsersController@bookmarks');
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/logout', 'Auth\LoginController@logout');
@@ -27,3 +21,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('categories', 'CategoriesController');
 });
+
+// only home and viewing bookmarks should be accessible to logged in users
+Route::get('/', 'DiscoverController@index');
+Route::get('/discover', 'DiscoverController@index');
+Route::resource('bookmarks', 'BookmarksController');
+Route::get('users/{id}/bookmarks', 'UsersController@bookmarks');

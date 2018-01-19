@@ -147,6 +147,8 @@ class BookmarksController extends Controller
     {
         $bookmark = Bookmark::find($id);
 
+        $this->authorize('update', $bookmark);
+
         if($request->has('read')) {
             if ($request->input('read')) {
                 $bookmark->archive();

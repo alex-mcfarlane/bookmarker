@@ -6,7 +6,7 @@
 
             @if($errors->count()>0)
                 <div class="alert-box">
-                    @foreach($errors->messages() as $error)
+                    @foreach($errors->messages() as $key => $error)
                         <p>{{$error[0]}}</p>
                     @endforeach
                 </div>
@@ -22,19 +22,19 @@
                         <fieldset>
                             <legend>Bookmark Details</legend>
                             <div>
-                                <label for="url">Url:
+                                <label for="url">Url: <span class="required">*</span>
                                     <input type="text" name="url" id="url" placeholder="Enter the URL for the web page"/>
                                 </label>
                             </div>
 
                             <div>
-                                <label for="title">Title:
+                                <label for="title">Title: <span class="required">*</span>
                                     <input type="text" name="title" id="title" placeholder="Enter a title"/>
                                 </label>
                             </div>
 
                             <div>
-                                <label for="description">Description:
+                                <label for="description">Description: <span class="required">*</span>
                                     <input type="text" name="description" id="description" placeholder="Describe the page you are bookmarking"/>
                                 </label>
                             </div>

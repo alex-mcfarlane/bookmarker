@@ -233,7 +233,10 @@ a.link {
         background-color: transparent;
         color: #333; }
 
-.inline-form label {
+form label {
   font-size: 1rem; }
+form span.required {
+  color: red;
+  font-weight: bold; }
 
 /*# sourceMappingURL=app.css.map */

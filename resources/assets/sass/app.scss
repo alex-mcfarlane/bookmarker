@@ -356,8 +356,13 @@ a.link {
 }
 
 // Forms
-.inline-form{
+form{
   label{
     font-size:1rem;
+  }
+
+  span.required{
+    color:red;
+    font-weight: bold;
   }
 }

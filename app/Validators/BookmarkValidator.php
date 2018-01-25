@@ -10,7 +10,7 @@ class BookmarkValidator extends Validator
         return [
             'url' => 'required|string',
             'title' => 'required|string',
-            'description' => 'required|string'
+            'description' => 'nullable|string'
         ];
     }
 }

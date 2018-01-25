@@ -43,7 +43,7 @@
                             </div>
 
                             <div {{ $errors->has('description') ? "class=error" : ""}}>
-                                <label for="description">Description: <span class="required">Required</span>
+                                <label for="description">Description:
                                     <input type="text" name="description" id="description" value="{{ old('description') ? old('description') : $bookmark->description}}"/>
                                 </label>
 

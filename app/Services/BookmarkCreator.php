@@ -15,16 +15,28 @@ class BookmarkCreator
      * @var BookmarkValidator
      */
     protected $validator;
+    /**
+     * @var array[string, mixed]
+     * optionalkey => defaultVal
+     */
+    protected $optionalKeys = ['description' => null, 'visibility_id' => 2];
 
     public function __construct(BookmarkValidator $validator)
     {
         $this->validator = $validator;
     }
 
-    public function create($attrs, array $category_ids)
+    public function create(array $attrs, array $category_ids)
     {
         if(!$this->validator->validate($attrs)) {
             throw new BaseException("Bookmark exception", $this->validator->getErrors(), 412);
+        }
+
+        // format data to account for possible missing keys
+        foreach($this->optionalKeys as $key => $defaultVal) {
+            if(!array_key_exists($key, $attrs)) {
+                $attrs[$key] = $defaultVal;
+            }
         }
 
         /** @var User $user */

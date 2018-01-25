@@ -38,7 +38,7 @@
                             </div>
 
                             <div {{ $errors->has('description') ? "class=error" : ""}}>
-                                <label for="description">Description <span class="required">Required</span>
+                                <label for="description">Description
                                     <input type="text" name="description"
                                            id="description" placeholder="Describe the page you are bookmarking"
                                            value="{{ old('description') ? old('description') : ''}}"/>

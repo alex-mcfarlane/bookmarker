@@ -19,17 +19,20 @@ for(var i = 0; i < sidebarLinks.length; i++) {
     var expandLink = sidebarLinks[i];
 
     expandLink.addEventListener('click', function() {
-        for(var nodeIndex = 0; nodeIndex < this.childNodes.length; nodeIndex++) {
-            var node = this.childNodes[nodeIndex];
+        // if the sidebar is closed don't even process this click
+        if(sidebar.classList.contains('open')) {
+            for(var nodeIndex = 0; nodeIndex < this.childNodes.length; nodeIndex++) {
+                var node = this.childNodes[nodeIndex];
 
-            // DOM manipulation on the ul sub-menu
-            if(node.classList && node.classList.contains('sub-menu')) {
-                // close open sub menu's
-                closeOpenMenus();
+                // DOM manipulation on the ul sub-menu
+                if(node.classList && node.classList.contains('sub-menu')) {
+                    // close open sub menu's
+                    closeOpenMenus();
 
-                node.classList.add('open');
+                    node.classList.add('open');
 
-                break;
+                    break;
+                }
             }
         }
     });

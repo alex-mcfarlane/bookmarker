@@ -97,8 +97,7 @@ a.link {
         text-align: center; }
       #main-sidebar ul.sidebar-navigation li ul.sub-menu {
         display: none;
-        margin-top: .667rem;
-        margin-bottom: 1rem; }
+        margin: .446rem 0 1.5rem 1.5rem; }
         #main-sidebar ul.sidebar-navigation li ul.sub-menu.open {
           display: block; }
         #main-sidebar ul.sidebar-navigation li ul.sub-menu li {

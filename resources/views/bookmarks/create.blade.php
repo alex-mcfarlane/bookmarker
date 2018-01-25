@@ -4,15 +4,7 @@
     <div class="row">
         <div class="column small-12 medium-10 large-8">
 
-            @if($errors->count()>0)
-                <div class="alert-box">
-                    @foreach($errors->messages() as $key => $error)
-                        <p>{{$error[0]}}</p>
-                    @endforeach
-                </div>
-            @endif
-
-            <form method="POST" action="/bookmarks" class="">
+            <form method="POST" action="/bookmarks" data-abide>
 
                 <input type="hidden" value="{{csrf_token()}}"/>
 
@@ -21,20 +13,24 @@
                     <div class="column medium-8">
                         <fieldset>
                             <legend>Bookmark Details</legend>
-                            <div>
-                                <label for="url">Url: <span class="required">*</span>
+                            <div {{ $errors->has('url') ? "class=error" : ""}}>
+                                <label for="url">Url <span class="required">Required</span>
                                     <input type="text" name="url" id="url" placeholder="Enter the URL for the web page"/>
                                 </label>
+
+                                @if($errors->has('url'))
+                                    <p class="error">{{$errors->get('url')[0]}}</p>
+                                @endif
                             </div>
 
-                            <div>
-                                <label for="title">Title: <span class="required">*</span>
+                            <div {{ $errors->has('title') ? "class=error" : ""}}>
+                                <label for="title">Title <span class="required">Required</span>
                                     <input type="text" name="title" id="title" placeholder="Enter a title"/>
                                 </label>
                             </div>
 
-                            <div>
-                                <label for="description">Description: <span class="required">*</span>
+                            <div {{ $errors->has('description') ? "class=error" : ""}}>
+                                <label for="description">Description <span class="required">Required</span>
                                     <input type="text" name="description" id="description" placeholder="Describe the page you are bookmarking"/>
                                 </label>
                             </div>

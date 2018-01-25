@@ -17,7 +17,7 @@ class BookmarkCreator
     protected $validator;
     /**
      * @var array[string, mixed]
-     * optionalkey => defaultVal
+     * optionalKey => defaultVal
      */
     protected $optionalKeys = ['description' => null, 'visibility_id' => 2];
 

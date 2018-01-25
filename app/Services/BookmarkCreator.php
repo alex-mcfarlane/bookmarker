@@ -5,6 +5,7 @@ use App\Bookmark;
 use App\BookmarkContext;
 use App\Category;
 use App\Exceptions\BaseException;
+use App\User;
 use App\Validators\BookmarkValidator;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,7 @@ class BookmarkCreator
             throw new BaseException("Bookmark exception", $this->validator->getErrors(), 412);
         }
 
+        /** @var User $user */
         $user = Auth::user();
         $context = new BookmarkContext($attrs['url'], $attrs['title'], $attrs['description']);
 

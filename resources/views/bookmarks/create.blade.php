@@ -15,7 +15,9 @@
                             <legend>Bookmark Details</legend>
                             <div {{ $errors->has('url') ? "class=error" : ""}}>
                                 <label for="url">Url <span class="required">Required</span>
-                                    <input type="text" name="url" id="url" placeholder="Enter the URL for the web page"/>
+                                    <input type="text" name="url"
+                                           id="url" placeholder="Enter the URL for the web page"
+                                           value="{{ old('url') ? old('url') : ''}}"/>
                                 </label>
 
                                 @if($errors->has('url'))
@@ -25,7 +27,9 @@
 
                             <div {{ $errors->has('title') ? "class=error" : ""}}>
                                 <label for="title">Title <span class="required">Required</span>
-                                    <input type="text" name="title" id="title" placeholder="Enter a title"/>
+                                    <input type="text" name="title"
+                                           id="title" placeholder="Enter a title"
+                                           value="{{ old('title') ? old('title') : ''}}"/>
                                 </label>
 
                                 @if($errors->has('title'))
@@ -35,7 +39,9 @@
 
                             <div {{ $errors->has('description') ? "class=error" : ""}}>
                                 <label for="description">Description <span class="required">Required</span>
-                                    <input type="text" name="description" id="description" placeholder="Describe the page you are bookmarking"/>
+                                    <input type="text" name="description"
+                                           id="description" placeholder="Describe the page you are bookmarking"
+                                           value="{{ old('description') ? old('description') : ''}}"/>
                                 </label>
 
                                 @if($errors->has('description'))

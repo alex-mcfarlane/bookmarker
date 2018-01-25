@@ -86,7 +86,7 @@ class Bookmark extends Model
         if($visibility = Visibility::find($visibilityId)) {
             $this->visibility()->associate($visibility);
         } else {
-            throw new BaseException('Unable to find an entry with the visibility id ' . $visibilityId, []);
+            throw new BaseException('Bookmark exception', ['Unable to find an entry with the visibility id ' . $visibilityId]);
         }
     }
 

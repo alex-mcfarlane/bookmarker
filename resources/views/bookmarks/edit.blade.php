@@ -22,22 +22,34 @@
                     <div class="column medium-8">
                         <fieldset>
                         <legend>Bookmark Details</legend>
-                            <div>
-                                <label for="url"">Url:
+                            <div {{ $errors->has('url') ? "class=error" : ""}}>
+                                <label for="url">Url: <span class="required">Required</span>
                                     <input type="text" name="url" id="url" value="{{ old('url') ? old('url') : $bookmark->url}}"/>
                                 </label>
+
+                                @if($errors->has('url'))
+                                    <small class="error">{{$errors->get('url')[0]}}</small>
+                                @endif
                             </div>
 
-                            <div>
-                                <label for="title">Title:
+                            <div {{ $errors->has('title') ? "class=error" : ""}}>
+                                <label for="title">Title: <span class="required">Required</span>
                                     <input type="text" name="title" id="title" value="{{ old('title') ? old('title') : $bookmark->title}}">
                                 </label>
+
+                                @if($errors->has('title'))
+                                    <small class="error">{{$errors->get('title')[0]}}</small>
+                                @endif
                             </div>
 
-                            <div>
-                                <label for="description">Description:
+                            <div {{ $errors->has('description') ? "class=error" : ""}}>
+                                <label for="description">Description: <span class="required">Required</span>
                                     <input type="text" name="description" id="description" value="{{ old('description') ? old('description') : $bookmark->description}}"/>
                                 </label>
+
+                                @if($errors->has('description'))
+                                    <small class="error">{{$errors->get('description')[0]}}</small>
+                                @endif
                             </div>
                         </fieldset>
                     </div>

@@ -81,7 +81,7 @@ class BookmarksController extends Controller
         try{
             $bookmark = $this->bookmarkCreator->create($input, $categories);
         } catch(BaseException $e) {
-            return back()->withErrors($e->getErrors());
+            return back()->withInput($request->input())->withErrors($e->getErrors());
         }
 
         return redirect()->route('bookmarks.show', ['id' => $bookmark->id])->with('success', 'Bookmark has been created!');

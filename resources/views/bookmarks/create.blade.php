@@ -19,7 +19,7 @@
                                 </label>
 
                                 @if($errors->has('url'))
-                                    <p class="error">{{$errors->get('url')[0]}}</p>
+                                    <small class="error">{{$errors->get('url')[0]}}</small>
                                 @endif
                             </div>
 
@@ -27,12 +27,20 @@
                                 <label for="title">Title <span class="required">Required</span>
                                     <input type="text" name="title" id="title" placeholder="Enter a title"/>
                                 </label>
+
+                                @if($errors->has('title'))
+                                    <small class="error">{{$errors->get('title')[0]}}</small>
+                                @endif
                             </div>
 
                             <div {{ $errors->has('description') ? "class=error" : ""}}>
                                 <label for="description">Description <span class="required">Required</span>
                                     <input type="text" name="description" id="description" placeholder="Describe the page you are bookmarking"/>
                                 </label>
+
+                                @if($errors->has('description'))
+                                    <small class="error">{{$errors->get('description')[0]}}</small>
+                                @endif
                             </div>
                         </fieldset>
                     </div>

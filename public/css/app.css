@@ -87,7 +87,8 @@ a.link {
   #main-sidebar ul.sidebar-navigation {
     padding: 1rem; }
     #main-sidebar ul.sidebar-navigation li {
-      margin-bottom: 1rem; }
+      margin-bottom: 1rem;
+      width: 120px; }
       #main-sidebar ul.sidebar-navigation li .menu-text {
         display: none; }
       #main-sidebar ul.sidebar-navigation li .icon-container {

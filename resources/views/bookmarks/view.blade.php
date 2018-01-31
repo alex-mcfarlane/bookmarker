@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="small-6 small-centered columns">
+        <div class="large-6 small-centered columns">
             <div class="bookmark bookmark-container detailed">
 
                 <div class="title">
@@ -15,6 +15,7 @@
                 </span>
 
                 <div class="tagline">
+                    <span class="fa fa-user"></span>
                     <p class="flex">Bookmarked from <a href="{{$bookmark->url}}" class="link" target="_blank">{{$bookmark->getHostName()}}</a></p>
                     <a href="{{$bookmark->url}}" class="button tiny" target="_blank">Read More!</a>
                 </div>

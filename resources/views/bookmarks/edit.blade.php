@@ -4,14 +4,6 @@
     <div class="row">
         <div class="column small-12 medium-10 large-8">
 
-            @if($errors->count()>0)
-                <div class="alert-box">
-                    @foreach($errors->messages() as $error)
-                        <p>{{$error[0]}}</p>
-                    @endforeach
-                </div>
-            @endif
-
             <form method="POST" action="{{  url('bookmarks/'.$bookmark->id) }}" class="inline-form">
 
                 {{ csrf_field() }}
@@ -68,7 +60,7 @@
                                     </select>
                                 </label>
                             </div>
-                            <div>
+                            <div {{$errors->has('visibility_id') ? "class=error" : ''}}>
                                 <label for="visibility_id">Visibility:
                                     <select name="visibility_id" id="visibility_id">
                                         @foreach($visibilities as $visibility)
@@ -76,6 +68,10 @@
                                         @endforeach
                                     </select>
                                 </label>
+
+                                @if($errors->has('visibility_id'))
+                                    <small class="error">{{$errors->get('visibility_id')[0]}}</small>
+                                @endif
                             </div>
                         </fieldset>
                     </div>

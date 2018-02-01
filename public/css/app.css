@@ -32,7 +32,8 @@ p, a {
   font-size: 1em; }
 
 p {
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  line-height: 1.4; }
 
 a {
   color: #333; }
@@ -98,7 +99,7 @@ a.link {
         text-align: center; }
       #main-sidebar ul.sidebar-navigation li ul.sub-menu {
         display: none;
-        margin: .446rem 0 1.5rem 1.5rem; }
+        margin: .446rem 0 1.5rem 2.25rem; }
         #main-sidebar ul.sidebar-navigation li ul.sub-menu.open {
           display: block; }
         #main-sidebar ul.sidebar-navigation li ul.sub-menu li {
@@ -207,9 +208,15 @@ a.link {
     padding: .296rem;
     font-size: .667rem; }
   .bookmark .tagline {
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: flex-end; }
+    .bookmark .tagline p, .bookmark .tagline a {
+      margin-bottom: 0; }
+    .bookmark .tagline span.fa-user {
+      margin-right: .667rem;
+      font-size: 2.25rem; }
     .bookmark .tagline .flex {
       flex: 1; }
   .bookmark .bookmark-meta-info img, .bookmark .bookmark-meta-info p {

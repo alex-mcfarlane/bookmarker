@@ -64,7 +64,7 @@
                                     </select>
                                 </label>
                             </div>
-                            <div>
+                            <div {{$errors->has('visibility_id') ? "class=error" : ''}}>
                                 <label for="visibility_id">Visibility:
                                     <select name="visibility_id" id="visibility_id">
                                         @foreach($visibilities as $visibility)
@@ -72,6 +72,10 @@
                                         @endforeach
                                     </select>
                                 </label>
+
+                                @if($errors->has('visibility_id'))
+                                    <small class="error">{{$errors->get('visibility_id')[0]}}</small>
+                                @endif
                             </div>
                         </fieldset>
                     </div>

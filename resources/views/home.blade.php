@@ -56,14 +56,25 @@
     @endif
 
     <div class="row">
-    @foreach($bookmarks as $key => $bookmark)
-        @if($key % 3 == 0)
-                <div class="clearfix"></div>
-        @endif
+        @if($bookmarks->count() > 0)
+            @foreach($bookmarks as $key => $bookmark)
+                @if($key % 3 == 0)
+                        <div class="clearfix"></div>
+                @endif
 
-        <div class="medium-4 columns">
-            @include('bookmarks.listing', ['bookmark' => $bookmark])
-        </div>
-    @endforeach
+                <div class="medium-4 columns">
+                    @include('bookmarks.listing', ['bookmark' => $bookmark])
+                </div>
+            @endforeach
+        @else
+            <div class="medium-6 medium-centered column">
+                <div class="panel callout radius text-center">
+                    <p>Welcome to Bookmarker! Quickly and easily create references to resources on the Web. Found an article
+                    on a public computer but do not have time to read it? Bookmark it! And read it at home later.</p>
+                    <a href="{{url('bookmarks/create')}}" class="button success radius">Create a Bookmark</a>
+                </div>
+            </div>
+        @endif
     </div>
+
 @endsection

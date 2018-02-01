@@ -178,10 +178,14 @@ a.link {
 
 .listing {
   margin-bottom: 1.5rem;
-  padding: .667em 1em;
+  padding: .667em 1em 1em;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px; }
+  .listing h3 {
+    margin-top: 0; }
+  .listing .tagline {
+    margin-bottom: 0 !important; }
 
 .detailed {
   padding: 1rem; }
@@ -213,20 +217,15 @@ a.link {
     align-items: center;
     justify-content: flex-end; }
     .bookmark .tagline p, .bookmark .tagline a {
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      line-height: 1.2; }
+    .bookmark .tagline .left-image {
+      margin-right: .446rem; }
     .bookmark .tagline span.fa-user {
       margin-right: .667rem;
       font-size: 2.25rem; }
     .bookmark .tagline .flex {
       flex: 1; }
-  .bookmark .bookmark-meta-info img, .bookmark .bookmark-meta-info p {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: .667rem; }
-  .bookmark .bookmark-meta-info p {
-    max-width: 80%;
-    margin-bottom: 0;
-    line-height: 1.2; }
   .bookmark .actions-container {
     float: right;
     height: 16px; }

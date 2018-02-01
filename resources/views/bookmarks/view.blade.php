@@ -16,7 +16,9 @@
 
                 <div class="tagline">
                     <span class="fa fa-user"></span>
-                    <p class="flex">Bookmarked from <a href="{{$bookmark->url}}" class="link" target="_blank">{{$bookmark->getHostName()}}</a></p>
+                    <p class="flex">
+                        Bookmarked by {{$bookmark->user->name}} from <a href="{{$bookmark->url}}" class="link" target="_blank">{{$bookmark->getHostName()}}</a>
+                    </p>
                     <a href="{{$bookmark->url}}" class="button tiny" target="_blank">Read More!</a>
                 </div>
 

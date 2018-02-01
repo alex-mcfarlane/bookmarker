@@ -272,10 +272,18 @@ a.link {
 
 .listing{
   margin-bottom: 1.5rem;
-  padding:.667em 1em;
+  padding:.667em 1em 1em;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+
+  h3{
+    margin-top: 0;
+  }
+
+  .tagline {
+    margin-bottom: 0 !important;
+  }
 }
 .detailed {
   padding:1rem;
@@ -320,6 +328,11 @@ a.link {
 
     p, a {
       margin-bottom: 0;
+      line-height: 1.2;
+    }
+
+    .left-image {
+      margin-right: .446rem;
     }
 
     span.fa-user {
@@ -329,20 +342,6 @@ a.link {
 
     .flex {
       flex: 1;
-    }
-  }
-
-  .bookmark-meta-info {
-    img, p{
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: .667rem;
-    }
-
-    p {
-      max-width: 80%;
-      margin-bottom: 0;
-      line-height: 1.2;
     }
   }
 

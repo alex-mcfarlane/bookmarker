@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exceptions\BaseException;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
@@ -141,6 +142,11 @@ class Bookmark extends Model
     public function setUser(User $user)
     {
         $this->user()->associate($user);
+    }
+
+    public function getFromDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
     }
 
     protected function removeCategory(Category $category)

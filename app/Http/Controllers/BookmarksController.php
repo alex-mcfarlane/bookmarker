@@ -37,18 +37,18 @@ class BookmarksController extends Controller
         $filters = ['visibility' => 'public'] + $request->all();
 
         $query = new BookmarkQuery($filters);
-
         $builder = $query->applyFilters(Bookmark::query());
 
         $bookmarks = $builder->get();
 
-        // if authenticated user, include their private bookmarks in the listing
+        /* if authenticated user, include their private bookmarks and bookmarks from other users they have
+          access to in the listing */
         if(Auth::check()) {
             $privateBookmarksQuery = new BookmarkQuery(['visibility' => 'private', 'owner' => Auth::id()]);
+            $bookmarks = $bookmarks->merge($privateBookmarksQuery->applyFilters(Bookmark::query())->get());
 
-            $builder = $privateBookmarksQuery->applyFilters(Bookmark::query());
-
-            $bookmarks = $bookmarks->merge($builder->get());
+            $accessBookmarks = new BookmarkQuery(['access' => Auth::id()]);
+            $bookmarks = $bookmarks->merge($accessBookmarks->applyFilters(Bookmark::query())->get());
         }
 
         return view('bookmarks.index', ['bookmarks'=>$bookmarks]);

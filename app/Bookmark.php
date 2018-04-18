@@ -61,6 +61,11 @@ class Bookmark extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function access()
+    {
+        return $this->hasMany('App\Access');
+    }
+
     /**
      * @param $url
      *
@@ -149,6 +154,13 @@ class Bookmark extends Model
         return Carbon::parse($value)->format('d-m-Y');
     }
 
+    public function grantAccess($userId, Role $role)
+    {
+        $access = Access::forBookmark($userId, $role, $this);
+
+        return $access;
+    }
+
     protected function removeCategory(Category $category)
     {
         $this->categories()->detach($category->id);
@@ -166,6 +178,13 @@ class Bookmark extends Model
     {
         return $query->whereHas('visibility', function($q) use ($name) {
             return $q->where('name', $name);
+        });
+    }
+
+    public function scopeWithAccess(Builder $query, $userId)
+    {
+        return $query->whereHas('access', function($q) use($userId){
+            return $q->where('user_id', $userId)->where('role_id', 2);
         });
     }
 }

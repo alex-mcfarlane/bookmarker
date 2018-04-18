@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function access()
+    {
+        return $this->belongsToMany('App\Access');
+    }
+
     /**
      * @param BookmarkContext $context
      * @param int $visibilityId

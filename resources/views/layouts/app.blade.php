@@ -63,6 +63,7 @@
 </section>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/autocomplete.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

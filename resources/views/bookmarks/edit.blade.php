@@ -73,6 +73,19 @@
                                     <small class="error">{{$errors->get('visibility_id')[0]}}</small>
                                 @endif
                             </div>
+
+                            <div>
+                                <label>Begin typing a users name to give them access</label>
+                                <input type="text" id="autocomplete"/>
+
+                                <div id="autocomplete-results">
+
+                                </div>
+
+                                <div id="selected-items">
+
+                                </div>
+                            </div>
                         </fieldset>
                     </div>
                 </div>

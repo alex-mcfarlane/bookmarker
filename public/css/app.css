@@ -244,4 +244,14 @@ form label {
 form span.required {
   font-size: .667em; }
 
+#autocomplete {
+  margin: 0; }
+
+#autocomplete-results > div {
+  background: white;
+  border: 1px solid #ccc;
+  border-top: 0;
+  padding: .5rem;
+  cursor: pointer; }
+
 /*# sourceMappingURL=app.css.map */

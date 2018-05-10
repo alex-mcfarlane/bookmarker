@@ -50,3 +50,17 @@ function closeOpenMenus()
         }
     }
 }
+
+/*
+ Autocomplete
+ */
+// Add a keyup event listener to our input element
+var users = {
+    1: "Alex",
+    2: "Allan",
+    3: "Chantel",
+    4: "Linda",
+    5: "Charlie"
+};
+
+var autocomplete = new Autocomplete('autocomplete', users, 'access');

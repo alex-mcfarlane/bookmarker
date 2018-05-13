@@ -24,12 +24,12 @@ class Access extends Model
         return $this->belongsTo('App\Role');
     }
 
-    public static function forBookmark($userId, Role $role, Bookmark $bookmark)
+    public static function forBookmark($userId, $roleId, $bookmarkId)
     {
         $access = self::create([
             'user_id' => $userId,
-            'role_id' => $role->id,
-            'bookmark_id' => $bookmark->id
+            'role_id' => $roleId,
+            'bookmark_id' => $bookmarkId
         ]);
 
         return $access;

@@ -254,4 +254,15 @@ form span.required {
   padding: .5rem;
   cursor: pointer; }
 
+#selected-items {
+  background: white;
+  margin-top: 1rem; }
+  #selected-items .selected-item {
+    display: inline-block;
+    background: #34495e;
+    color: whitesmoke;
+    margin: .667rem;
+    padding: .446rem 1rem;
+    cursor: pointer; }
+
 /*# sourceMappingURL=app.css.map */

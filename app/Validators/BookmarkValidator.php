@@ -11,7 +11,9 @@ class BookmarkValidator extends Validator
             'url' => 'required|string',
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'visibility_id' => 'required|integer'
+            'visibility_id' => 'required|integer',
+            'access' => 'array',
+            'access.*' => 'int'
         ];
     }
 }

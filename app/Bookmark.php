@@ -34,7 +34,7 @@ class Bookmark extends Model
         return $bookmark;
     }
 
-    public function edit(BookmarkContext $context, $categoryIds, $visibilityId)
+    public function edit(BookmarkContext $context, $categoryIds, $visibilityId, $userAccessIds)
     {
         $this->title = $context->getTitle();
         $this->description = $context->getDescription();
@@ -154,9 +154,9 @@ class Bookmark extends Model
         return Carbon::parse($value)->format('d-m-Y');
     }
 
-    public function grantAccess($userId, Role $role)
+    public function grantAccess($userId, $roleId)
     {
-        $access = Access::forBookmark($userId, $role, $this);
+        $access = Access::forBookmark($userId, $roleId, $this->id);
 
         return $access;
     }

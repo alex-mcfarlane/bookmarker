@@ -63,4 +63,6 @@ var users = {
     5: "Charlie"
 };
 
-var autocomplete = new Autocomplete('autocomplete', users, 'access');
+
+
+var autocomplete = new Autocomplete('autocomplete', users, 'access', 'selected-items');

@@ -1,13 +1,10 @@
-function Autocomplete(inputId, list, collectionName) {
+function Autocomplete(inputId, list, collectionName, selectedItemsContainerId) {
     this.input = document.getElementById(inputId);
     this.list = list;
     this.collectionName = collectionName;
 
-    this.createContainer('autocomplete-results');
-    this.createContainer('selected-items');
-
-    this.resultsContainer = document.getElementById('autocomplete-results');
-    this.selectedContainer = document.getElementById('selected-items');
+    this.resultsContainer = this.createContainer('autocomplete-results');
+    this.selectedContainer = document.getElementById(selectedItemsContainerId);
 
     // bind event listener for when user types into input
     var self = this;
@@ -20,6 +17,8 @@ function Autocomplete(inputId, list, collectionName) {
 Autocomplete.prototype.createContainer = function(id) {
     var container = document.createElement('div');
     container.setAttribute('id', id);
+
+    this.input.parentNode.insertBefore(container, this.input.nextSibling);
 
     return container;
 }
@@ -50,8 +49,8 @@ Autocomplete.prototype.compare = function(item, inputVal) {
 Autocomplete.prototype.selectItem = function(selectedItem, itemId) {
     this.selectedContainer.appendChild(selectedItem);
 
-    this.input.value = this.list[itemId];
-
+    // clear search input and results container
+    this.input.value = "";
     this.resultsContainer.innerHTML = "";
 }
 

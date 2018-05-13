@@ -131,7 +131,7 @@ class BookmarksController extends Controller
         // make sure user is authorized to edit this bookmark
         $this->authorize('update', $bookmark);
 
-        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
+        $input = $request->only(['url', 'title', 'description', 'visibility_id', 'access']);
         $categories = $request->input('categories', []);
 
         try {

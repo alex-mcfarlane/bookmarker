@@ -148,8 +148,7 @@ class BookmarkTest extends TestCase
         $bookmark2 = $user1->createBookmark($context2, 1);
         $bookmark3 = $user2->createBookmark($context3, 1);
 
-        $role = Role::find(2);
-        $bookmark->grantAccess($user2->id, $role);
+        $bookmark->grantAccess($user2->id, Role::$rolesMap['reader']);
 
         $query = new BookmarkQuery(['visibility' => 'private', 'access' => $user2->id]);
 

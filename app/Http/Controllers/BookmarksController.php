@@ -47,7 +47,7 @@ class BookmarksController extends Controller
             $privateBookmarksQuery = new BookmarkQuery(['visibility' => 'private', 'owner' => Auth::id()]);
             $bookmarks = $bookmarks->merge($privateBookmarksQuery->applyFilters(Bookmark::query())->get());
 
-            $accessBookmarks = new BookmarkQuery(['access' => Auth::id()]);
+            $accessBookmarks = new BookmarkQuery(['access' => Auth::id(), 'owner' => $request->get('owner')]);
             $bookmarks = $bookmarks->merge($accessBookmarks->applyFilters(Bookmark::query())->get());
         }
 

@@ -72,7 +72,12 @@ class BookmarkQuery extends Query
         if($userId != Auth::id()) {
             throw new \Exception('Permission Denied: You are not permitted to read bookmarks you haven\'t been granted access to.');
         }
-        return $this->builder->withAccess($userId);
+
+        if(array_key_exists('owner', $this->params)) {
+            return $this->builder->withAccess($userId, $this->params['owner']);
+        } else {
+            return $this->builder->withAccess($userId);
+        }
     }
 
     private function validateDate($date)

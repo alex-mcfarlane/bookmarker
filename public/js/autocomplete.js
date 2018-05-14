@@ -82,7 +82,7 @@ Match.prototype.clickHandler = function(autocomplete) {
 
         var selectedItem = document.createElement('div');
         selectedItem.setAttribute('class', 'selected-item');
-        selectedItem.innerHTML += "<span>" + users[matchInput.value] + "</span>";
+        selectedItem.innerHTML += "<span>" + autocomplete.list[matchInput.value] + "</span>";
         selectedItem.appendChild(matchInput);
 
         autocomplete.selectItem(selectedItem, matchInput.value);

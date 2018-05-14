@@ -34,7 +34,7 @@ class Bookmark extends Model
         return $bookmark;
     }
 
-    public function edit(BookmarkContext $context, $categoryIds, $visibilityId, $userAccessIds)
+    public function edit(BookmarkContext $context, $categoryIds, $visibilityId)
     {
         $this->title = $context->getTitle();
         $this->description = $context->getDescription();

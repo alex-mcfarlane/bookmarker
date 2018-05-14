@@ -79,7 +79,12 @@
                                 <input type="text" id="autocomplete"/>
 
                                 <div id="selected-items">
-
+                                    @foreach($bookmark->access as $access)
+                                    <div class="selected-item">
+                                        <span>{{ $access->user->name }}</span>
+                                        <input type="hidden" name="access[]" value="{{$access->user_id}}" />
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </fieldset>

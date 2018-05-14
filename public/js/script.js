@@ -63,6 +63,21 @@ var users = {
     5: "Charlie"
 };
 
+var xhttp = new XMLHttpRequest();
 
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
 
-var autocomplete = new Autocomplete('autocomplete', users, 'access', 'selected-items');
+        var usersMap = data.reduce(function(usersMap, user){
+            usersMap[user.id] = user.name;
+
+            return usersMap;
+        }, {});
+console.log(usersMap);
+        var autocomplete = new Autocomplete('autocomplete', usersMap, 'access', 'selected-items');
+    }
+};
+
+xhttp.open("GET", "/api/v1/users", true);
+xhttp.send();

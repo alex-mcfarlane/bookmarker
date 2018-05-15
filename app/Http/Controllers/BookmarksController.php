@@ -131,7 +131,7 @@ class BookmarksController extends Controller
         // make sure user is authorized to edit this bookmark
         $this->authorize('update', $bookmark);
 
-        $input = $request->only(['url', 'title', 'description', 'visibility_id', 'access']);
+        $input = $this->getInput($request);
         $categories = $request->input('categories', []);
 
         try {
@@ -170,5 +170,14 @@ class BookmarksController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function getInput(Request $request)
+    {
+        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
+
+        $input['access'] = $request->get('access', []);
+
+        return $input;
     }
 }

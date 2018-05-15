@@ -28,11 +28,7 @@ class BookmarkUpdater
         $bookmark->edit($context, $category_ids, $attrs['visibility_id']);
 
         // grant read access to users
-        $roleId = Role::$rolesMap['reader'];
-
-        foreach($attrs['access'] as $userId) {
-            $bookmark->grantAccess($userId, $roleId);
-        }
+        $bookmark->setAccess($attrs['access'], Role::$rolesMap['reader']);
 
         return $bookmark;
     }

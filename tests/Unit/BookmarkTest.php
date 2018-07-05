@@ -12,10 +12,12 @@ namespace Tests\Unit;
 use App\Bookmark;
 use App\BookmarkContext;
 use App\Category;
+use App\Role;
 use App\User;
 use Carbon\Carbon;
 use App\Queries\BookmarkQuery;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class BookmarkTest extends TestCase
@@ -26,6 +28,7 @@ class BookmarkTest extends TestCase
     {
         parent::setUp();
 
+        $this->seed('RolesTableSeeder');
         $this->seed('VisibilitiesTableSeeder');
     }
 
@@ -126,5 +129,31 @@ class BookmarkTest extends TestCase
         $bookmark = $user->createBookmark($context);
 
         $this->assertEquals('http://google.com', $bookmark->url);
+    }
+
+    /**
+     * @test
+     */
+    public function can_grant_access_to_a_private_bookmark()
+    {
+        $user1 = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+        $this->be($user2);
+
+        $context = new BookmarkContext("http://google.com", 'Google', 'Search Engine');
+        $context2 = new BookmarkContext("www.laracasts.com", 'Laracasts', 'Laravel and PHP Tutorials');
+        $context3 = new BookmarkContext("www.sherdog.com", 'Sherdog', 'MMA News');
+
+        $bookmark = $user1->createBookmark($context, 1);
+        $bookmark2 = $user1->createBookmark($context2, 1);
+        $bookmark3 = $user2->createBookmark($context3, 1);
+
+        $bookmark->grantAccess($user2->id, Role::$rolesMap['reader']);
+
+        $query = new BookmarkQuery(['visibility' => 'private', 'access' => $user2->id]);
+
+        $bookmarks = $query->applyFilters(Bookmark::query())->get();
+
+        dd($bookmarks);
     }
 }

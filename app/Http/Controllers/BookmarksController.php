@@ -37,18 +37,18 @@ class BookmarksController extends Controller
         $filters = ['visibility' => 'public'] + $request->all();
 
         $query = new BookmarkQuery($filters);
-
         $builder = $query->applyFilters(Bookmark::query());
 
         $bookmarks = $builder->get();
 
-        // if authenticated user, include their private bookmarks in the listing
+        /* if authenticated user, include their private bookmarks and bookmarks from other users they have
+          access to in the listing */
         if(Auth::check()) {
             $privateBookmarksQuery = new BookmarkQuery(['visibility' => 'private', 'owner' => Auth::id()]);
+            $bookmarks = $bookmarks->merge($privateBookmarksQuery->applyFilters(Bookmark::query())->get());
 
-            $builder = $privateBookmarksQuery->applyFilters(Bookmark::query());
-
-            $bookmarks = $bookmarks->merge($builder->get());
+            $accessBookmarks = new BookmarkQuery(['access' => Auth::id(), 'owner' => $request->get('owner')]);
+            $bookmarks = $bookmarks->merge($accessBookmarks->applyFilters(Bookmark::query())->get());
         }
 
         return view('bookmarks.index', ['bookmarks'=>$bookmarks]);
@@ -131,7 +131,7 @@ class BookmarksController extends Controller
         // make sure user is authorized to edit this bookmark
         $this->authorize('update', $bookmark);
 
-        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
+        $input = $this->getInput($request);
         $categories = $request->input('categories', []);
 
         try {
@@ -170,5 +170,14 @@ class BookmarksController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function getInput(Request $request)
+    {
+        $input = $request->only(['url', 'title', 'description', 'visibility_id']);
+
+        $input['access'] = $request->get('access', []);
+
+        return $input;
     }
 }

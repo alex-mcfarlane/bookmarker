@@ -67,6 +67,19 @@ class BookmarkQuery extends Query
         }
     }
 
+    protected function access($userId)
+    {
+        if($userId != Auth::id()) {
+            throw new \Exception('Permission Denied: You are not permitted to read bookmarks you haven\'t been granted access to.');
+        }
+
+        if(array_key_exists('owner', $this->params)) {
+            return $this->builder->withAccess($userId, $this->params['owner']);
+        } else {
+            return $this->builder->withAccess($userId);
+        }
+    }
+
     private function validateDate($date)
     {
         $splitDate = explode('-', $date);

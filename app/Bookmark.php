@@ -61,6 +61,11 @@ class Bookmark extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function access()
+    {
+        return $this->hasMany('App\Access');
+    }
+
     /**
      * @param $url
      *
@@ -113,6 +118,26 @@ class Bookmark extends Model
         }
     }
 
+    public function setAccess($userIds, $roleId)
+    {
+        foreach($this->access as $access) {
+            if($access->role_id == $roleId) {
+                if(!in_array($access->user_id, $userIds)) {
+                    // delete relation if not found in request
+                    $access->delete();
+                } else {
+                    // remove from userIds if relation already exists so that we do not duplicate it
+                    array_splice($userIds, array_search($access->userid, $userIds));
+                }
+            }
+
+        }
+
+        foreach($userIds as $userId) {
+            $this->grantAccess($userId, $roleId);
+        }
+    }
+
     public function archive()
     {
         $this->read = true;
@@ -149,6 +174,15 @@ class Bookmark extends Model
         return Carbon::parse($value)->format('d-m-Y');
     }
 
+    public function grantAccess($userId, $roleId)
+    {
+        $this->access()->create([
+            'user_id' => $userId,
+            'role_id' => $roleId,
+            'bookmark_id' => $this->id
+        ]);
+    }
+
     protected function removeCategory(Category $category)
     {
         $this->categories()->detach($category->id);
@@ -167,5 +201,18 @@ class Bookmark extends Model
         return $query->whereHas('visibility', function($q) use ($name) {
             return $q->where('name', $name);
         });
+    }
+
+    public function scopeWithAccess(Builder $query, $userId, $ownerId = null)
+    {
+        $query->whereHas('access', function($q) use($userId){
+            return $q->where('user_id', $userId)->where('role_id', 2);
+        });
+
+        if(!is_null($ownerId)) {
+            $query->where('user_id', $ownerId);
+        }
+
+        return $query;
     }
 }

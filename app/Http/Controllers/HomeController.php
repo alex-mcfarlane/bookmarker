@@ -26,6 +26,10 @@ class HomeController extends Controller
         $bookmarks = $builder->get();
         $categories = Category::popular()->get();
 
+        // get private bookmarks of other users that this user has access to
+        $accessBookmarksQuery = new BookmarkQuery(['access' => Auth::id()]);
+        $bookmarks = $bookmarks->merge($accessBookmarksQuery->applyFilters(Bookmark::query())->get());
+
         return view('home', ['bookmarks'=>$bookmarks, 'categories' => $categories]);
     }
 }

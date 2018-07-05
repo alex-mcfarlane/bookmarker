@@ -6,6 +6,7 @@ namespace App\Services;
 use App\Bookmark;
 use App\BookmarkContext;
 use App\Exceptions\BaseException;
+use App\Role;
 use App\Validators\BookmarkValidator;
 
 class BookmarkUpdater
@@ -25,6 +26,9 @@ class BookmarkUpdater
 
         $context = new BookmarkContext($attrs['url'], $attrs['title'], $attrs['description']);
         $bookmark->edit($context, $category_ids, $attrs['visibility_id']);
+
+        // grant read access to users
+        $bookmark->setAccess($attrs['access'], Role::$rolesMap['reader']);
 
         return $bookmark;
     }

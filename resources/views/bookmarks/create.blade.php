@@ -77,6 +77,11 @@
                                     <small class="error">{{$errors->get('visibility_id')[0]}}</small>
                                 @endif
                             </div>
+
+                            @include('bookmarks.access', [
+                                'accessors' => [],
+                                'visibility_id' => 2
+                            ])
                         </fieldset>
                     </div>
 

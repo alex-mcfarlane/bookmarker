@@ -365,7 +365,9 @@ a.link {
   }
 }
 
-// Forms
+/**
+ * Forms
+ */
 form{
   label{
     font-size:1rem;
@@ -400,4 +402,19 @@ form{
     padding: .446rem 1rem;
     cursor: pointer;
   }
+}
+
+/**
+ * Utility Classes
+ */
+.show {
+  display: block;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }

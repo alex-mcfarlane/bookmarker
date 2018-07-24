@@ -239,6 +239,9 @@ a.link {
         background-color: transparent;
         color: #333; }
 
+/**
+ * Forms
+ */
 form label {
   font-size: 1rem; }
 form span.required {
@@ -264,5 +267,18 @@ form span.required {
     margin: .667rem;
     padding: .446rem 1rem;
     cursor: pointer; }
+
+/**
+ * Utility Classes
+ */
+.show {
+  display: block;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear; }
+
+.hidden {
+  display: none;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear; }
 
 /*# sourceMappingURL=app.css.map */

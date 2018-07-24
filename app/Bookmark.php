@@ -129,7 +129,7 @@ class Bookmark extends Model
                     /* Remove from userIds if relation already exists so that we do not duplicate it. Better for
                     performance if we just remove existing items from the userIds instead of checking for
                     existence with another iterative operation in the loop below. Also unset better than array_splice */
-                    unset($userIds[array_search($access->userid, $userIds)]);
+                    unset($userIds[array_search($access->user_id, $userIds)]);
                 }
             }
         }

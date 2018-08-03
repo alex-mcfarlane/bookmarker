@@ -204,15 +204,11 @@ class Bookmark extends Model
         });
     }
 
-    public function scopeWithAccess(Builder $query, $userId, $ownerId = null)
+    public function scopeWithAccess(Builder $query, $userId)
     {
         $query->whereHas('access', function($q) use($userId){
             return $q->where('user_id', $userId)->where('role_id', 2);
         });
-
-        if(!is_null($ownerId)) {
-            $query->where('user_id', $ownerId);
-        }
 
         return $query;
     }

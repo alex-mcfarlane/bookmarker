@@ -18,7 +18,7 @@ function Autocomplete(inputId, dictionary, collectionName, selectedItemsContaine
     var results = [];
 
     for(var i = 0; i < this.selectedContainer.children.length; i++) {
-        var domElem = this.selectedContainer.children[i];console.log(domElem.getElementsByTagName('span')[0]);
+        var domElem = this.selectedContainer.children[i];
         results.push(new Result(domElem.getElementsByTagName('input')[0].value, domElem.getElementsByTagName('span')[0].innerHTML, this.collectionName));
     }
 

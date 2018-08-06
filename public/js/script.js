@@ -51,6 +51,19 @@ function closeOpenMenus()
     }
 }
 
+// toggle access
+document.getElementById('visibility_id').addEventListener('change', toggleAccessControl);
+
+function toggleAccessControl() {
+    if(this.value == 1) {
+        document.getElementById('access-container').classList.remove('hidden');
+        document.getElementById('access-container').classList.add('show');
+    } else {
+        document.getElementById('access-container').classList.add('hidden');
+    }
+
+}
+
 /*
  Autocomplete
  */

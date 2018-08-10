@@ -24,6 +24,7 @@
                         <li><a href="/bookmarks/create">New</a></li>
                         <li><a href="/bookmarks?read=0&owner={{Auth::id()}}">Unread</a></li>
                         <li><a href="/bookmarks?read=1&owner={{Auth::id()}}">Archived</a></li>
+                        <li><a href="/bookmarks?owner={{Auth::id()}}">Mine</a></li>
                         <li><a href="/bookmarks?owner={{Auth::id()}}&access={{Auth::id()}}">All</a></li>
                     </ul>
                 </li>

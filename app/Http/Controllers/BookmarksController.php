@@ -34,7 +34,7 @@ class BookmarksController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = ['visibility' => 'public'] + $request->all();
+        $filters = ['visibility' => 'public'] + $request->except(['access']);
 
         $query = new BookmarkQuery($filters);
         $builder = $query->applyFilters(Bookmark::query());
@@ -47,8 +47,8 @@ class BookmarksController extends Controller
             $privateBookmarksQuery = new BookmarkQuery(['visibility' => 'private', 'owner' => Auth::id()]);
             $bookmarks = $bookmarks->merge($privateBookmarksQuery->applyFilters(Bookmark::query())->get());
 
-            if(array_key_exists('access', $filters)) {
-                $accessBookmarks = new BookmarkQuery(['access' => $filters['access']]);
+            if($request->get('access')) {
+                $accessBookmarks = new BookmarkQuery(['access' => $request->get('access')]);
                 $bookmarks = $bookmarks->merge($accessBookmarks->applyFilters(Bookmark::query())->get());
             }
         }
